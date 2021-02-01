@@ -1,9 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TodosController;
-use App\Http\Controllers\AuthorsController;
-use App\Http\Controllers\MoviesController;
+//use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +13,7 @@ use App\Http\Controllers\MoviesController;
 */
 // startseite
 Route::get('/', function () {
-    return view('start');
+    return vie('start');
 });
 Auth::routes();
 

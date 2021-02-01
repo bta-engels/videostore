@@ -13,7 +13,7 @@
 */
 // startseite
 Route::get('/', function () {
-    return vie('start');
+    return view('start');
 });
 Auth::routes();
 

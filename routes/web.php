@@ -16,7 +16,10 @@ Route::get('/', function () {
     return view('start', );
 });
 Auth::routes();
-
+// meine test route
+Route::get('/test', function() {
+    return view('test', );
+});
 // wenn eine route aufgerufen wird, die nicht definiert wurde
 Route::fallback(function () {
     return view('errors.message', ['message' => 'Die Route gibts nicht bei mir!']);

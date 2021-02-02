@@ -13,12 +13,10 @@ class CreateAuthorsTable extends Migration
      */
     public function up()
     {
-        $this->down();
         Schema::create('authors', function (Blueprint $table) {
-            $table->unsignedInteger('id', true);
+            $table->id();
             $table->string('firstname', 50);
             $table->string('lastname', 50);
-            $table->unique(['firstname','lastname']);
         });
     }
 

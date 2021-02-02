@@ -21,7 +21,7 @@ if [ ! -f .env ]; then
 fi
 if [ ! -f .htaccess ]; then
     echo "create .htaccess file"
-    cp htaccess-tpl .htaccess
+    cp htaccess.tpl .htaccess
 fi
 # check for APP_KEY
 appKey=$(grep ^APP_KEY .env|awk -F "=" '{print $2}')

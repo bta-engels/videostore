@@ -11,7 +11,7 @@
 - npm run dev
 - .env.local kopieren nach .env und die darin enthaltenen Conf-Daten anpassen
 
-#### Für Windows DNS in host Datei eintragen (C:\Window\System32\drivers\etc\hosts)
+#### Für Windows DNS in host Datei eintragen (C:\Windows\System32\drivers\etc\hosts)
 #### Für Mac OSX, Linux DNS in host Datei eintragen (/etc/hosts)
 - 127.0.0.1 videostore.loc
 - 127.0.0.1 admin.videostore.loc

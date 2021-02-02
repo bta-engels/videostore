@@ -4,6 +4,6 @@
 
 @section('content')
     <div>
-        <p>Das ist meine Startseite</p>
+        <p>Das ist meine coole Startseite</p>
     </div>
 @endsection

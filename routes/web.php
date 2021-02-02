@@ -22,5 +22,6 @@ Route::get('/test', function() {
 });
 // wenn eine route aufgerufen wird, die nicht definiert wurde
 Route::fallback(function() {
-    return view('errors.message', ['message' => 'Die Route gibts nicht bei mir!']);
+    $message = 'Diese Route gibt\'s nicht bei mir!';
+    return view('errors.message', compact('message'));
 });

@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+//use Bengels\LaravelEmailExceptions\Exceptions\EmailHandler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -25,14 +26,4 @@ class Handler extends ExceptionHandler
         'password',
         'password_confirmation',
     ];
-
-    /**
-     * Register the exception handling callbacks for the application.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
 }

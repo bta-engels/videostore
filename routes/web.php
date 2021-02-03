@@ -19,5 +19,5 @@ Auth::routes();
 
 // wenn eine route aufgerufen wird, die nicht definiert wurde
 Route::fallback(function () {
-    return "<h1>Die Route gibts nicht bei mir!</h1>";
+    return view('errors.message', ['message'=>'Die Route gibts nicht bei mir']);
 });

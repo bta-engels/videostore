@@ -11,13 +11,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// startseite
-Route::get('/', function () {
-    return view('start');
-});
 Auth::routes();
 
+// startseite
+Route::get('/', function() {
+    return view('start', );
+});
+Route::get('/test', function() {
+    return view('test', );
+});
 // wenn eine route aufgerufen wird, die nicht definiert wurde
-Route::fallback(function () {
-    return "<h1>Die Route gibts nicht bei mir!</h1>";
+Route::fallback(function() {
+    $message = 'Diese Route gibt\'s nicht bei mir!';
+    return view('errors.message', compact('message'));
 });

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Author extends Model
 {
-	protected $table = 'authors';
-
     use HasFactory;
+
+    protected $table = 'authors';
 }

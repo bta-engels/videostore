@@ -1,6 +1,4 @@
 /node_modules
-/public/hot
-/public/storage
 /storage/*.key
 /vendor
 /kurs/_hints.txt
@@ -19,6 +17,10 @@ yarn-error.log
 /.htaccess
 /public/js
 /public/css
+/public/hot
+/public/fonts
+/public/webfonts
+/public/storage
 /.phpstorm.meta.php
 /.styleci.yml
 /_ide_helper.php

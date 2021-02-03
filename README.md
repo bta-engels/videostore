@@ -13,6 +13,11 @@
 
 #### Für Windows DNS in host Datei eintragen (C:\Windows\System32\drivers\etc\hosts)
 #### Für Mac OSX, Linux DNS in host Datei eintragen (/etc/hosts)
+nur für Mac OSX: versteckte Dateien/Verzeichnisse anzeige: In Terminal eingeben:
+```
+defaults write com.apple.finder AppleShowAllFiles true
+killall Finder
+```
 - 127.0.0.1 videostore.loc
 - 127.0.0.1 admin.videostore.loc
 - 127.0.0.1 monitor.videostore.loc

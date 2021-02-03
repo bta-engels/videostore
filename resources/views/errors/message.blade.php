@@ -6,7 +6,7 @@
     <div>
         <p class="text-danger font-weight-bold">
             @if( isset($message) )
-                {{$message}}
+                {{ $message }}
             @endif
         </p>
     </div>

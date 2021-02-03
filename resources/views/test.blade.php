@@ -1,10 +1,10 @@
 @extends('layouts.default')
 
-@section('title','Bernds Test')
-@section('header','Bernds Testseite')
+@section('title','Test')
+@section('header','Test')
 
 @section('content')
     <div>
-        <p>My Test Stuff</p>
+        <p>Test Seite</p>
     </div>
 @endsection

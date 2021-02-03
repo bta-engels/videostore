@@ -22,6 +22,7 @@ Route::get('/test', function() {
 });
 // wenn eine route aufgerufen wird, die nicht definiert wurde
 Route::fallback(function() {
-    $message = 'Diese Route gibt\'s nicht bei mir!';
+    $message = '<h1>Diese Route gibt\'s nicht bei mir!</h1>';
+    // compact-Funktion: statt array Variablennamen als String benutzen
     return view('errors.message', compact('message'));
 });

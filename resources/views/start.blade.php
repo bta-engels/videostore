@@ -6,5 +6,6 @@
 @section('content')
     <div>
         <p>Das ist meine Startseite</p>
+        <p>{{ $globalName }}</p>
     </div>
 @endsection

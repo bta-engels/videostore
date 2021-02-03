@@ -22,7 +22,13 @@ Route::get('/', function() {
 //});
 
 // Route zur Klasse AuthorController, Funktion 'index', Name der Route: 'authors'
-Route::get('/authors', [AuthorController::class, 'index']) ->name('authors');
+Route::get('authors', [AuthorController::class, 'index']) ->name('authors');
+
+
+// Route zur Einzelansicht: Aufruf der Funktion 'show', Routenname: 'authors.show'
+// {author} wirt als Parameter der show-Funktion übergeben
+Route::get('authors/{author}', [AuthorController::class, 'show']) ->name('authors.show');
+
 
 // wenn eine route aufgerufen wird, die nicht definiert wurde
 Route::fallback(function() {

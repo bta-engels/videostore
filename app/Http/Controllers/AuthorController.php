@@ -25,6 +25,7 @@ class AuthorController extends Controller
      * @param Author $author
      * @return Response
      */
+//    Dependency -> Laravel liefert automatisch das Autor-Objekt, obwohl nur die id übergeben wird
     public function show(Author $author)
     {
         return view('public.authors.show', compact('author'));

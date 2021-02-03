@@ -19,7 +19,8 @@ Route::get('/', function() {
     return view('start', );
 });
 
-Route::get('/authors', [AuthorController::class, 'index'])->name('authors');
+Route::get('authors', [AuthorController::class, 'index'])->name('authors');
+Route::get('authors/{author}', [AuthorController::class, 'show'])->name('authors.show');
 
 // wenn eine route aufgerufen wird, die nicht definiert wurde
 Route::fallback(function() {

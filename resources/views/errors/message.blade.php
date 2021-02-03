@@ -5,6 +5,7 @@
 @section('content')
     <div>
         <p class="text-danger font-weight-bold">
+            // Falls Variable message gesetzt, wird diese ausgegeben
             @if( isset($message) )
                 {{$message}}
             @endif

@@ -24,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('globalName', 'Das ist allgemein in allen Views verfügbar');
+        View::share('globalName', 'Das ist allgemein allen Views verfügbar');
+        View::share('eva', 'Toll, oder?');
+
     }
 }

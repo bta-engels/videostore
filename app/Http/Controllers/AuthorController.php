@@ -29,6 +29,7 @@ class AuthorController extends Controller
         //
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -49,6 +50,7 @@ class AuthorController extends Controller
     {
         //
     }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
-@section('title', 'Login')
-@section('header', 'Login')
+@section('title', 'Login');
+@section('header', 'Login');
 
 @section('content')
     <form method="POST" action="{{ route('login') }}">
@@ -64,5 +64,4 @@
             </div>
         </div>
     </form>
-
 @endsection

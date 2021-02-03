@@ -4,7 +4,6 @@
 @section('header', 'Register')
 
 @section('content')
-
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -71,5 +70,4 @@
             </div>
         </div>
     </form>
-
 @endsection

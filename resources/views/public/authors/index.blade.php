@@ -15,6 +15,13 @@
                     <th>ID</th>
                     <th>Name</th>
                 </tr>
+                <!-- !-->
+                @foreach ($data as $item)
+                    <tr>
+                        <td>{{ $item->id }}</td>
+                        <td><a href="{{ route('authors.show'), ['author'] }}">{{ $item->firstname }} {{ $item->lastname }}</a></td>
+                    </tr>
+                @endforeach
             </table>
 
         @else

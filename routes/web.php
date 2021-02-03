@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthorController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +27,7 @@ Route::get('authors', [AuthorController::class, 'index']) ->name('authors');
 
 
 // Route zur Einzelansicht: Aufruf der Funktion 'show', Routenname: 'authors.show'
-// {author} wirt als Parameter der show-Funktion übergeben
+// {author} wird als Parameter der show-Funktion übergeben
 Route::get('authors/{author}', [AuthorController::class, 'show']) ->name('authors.show');
 
 

@@ -1,6 +1,7 @@
 
 <ul class="navbar-nav mr-auto">
-    <!--li class="nav-item">
-        <a class="nav-link" href="{{-- route('authors') --}}">Autoren</a>
+    <li class="nav-item">
+{{--    Rufe Route 'authors' wie in web.php definiert auf--}}
+        <a class="nav-link" href="{{ route('authors') }}">Autoren</a>
     </li-->
 </ul>

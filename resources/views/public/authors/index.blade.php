@@ -15,6 +15,13 @@
                     <th>ID</th>
                     <th>Name</th>
                 </tr>
+                <!-- table data -->
+                @foreach ($data as $item)
+                    <tr>
+                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->firstname }} {{ $item->lastname }}</td>
+                    </tr>
+                @endforeach
             </table>
 
         @else

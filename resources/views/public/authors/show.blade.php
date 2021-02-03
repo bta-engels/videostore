@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="align-content-center">
-        <h5></h5>
+        <h5>{{ $author->firstname }} {{ $author->lastname }}</h5>
         <div>
         </div>
     </div>

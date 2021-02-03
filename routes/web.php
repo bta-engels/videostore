@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +18,9 @@ Auth::routes();
 Route::get('/', function() {
     return view('start', );
 });
-Route::get('/test', function() {
-    return view('test', );
-});
+
+Route::get('/authors', [AuthorController::class, 'index'])->name('authors');
+
 // wenn eine route aufgerufen wird, die nicht definiert wurde
 Route::fallback(function() {
     $message = 'Diese Route gibt\'s nicht bei mir!';

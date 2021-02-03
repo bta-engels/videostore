@@ -15,6 +15,7 @@
                     <th>ID</th>
                     <th>Name</th>
                 </tr>
+                <!-- table data -->
             </table>
 
         @else

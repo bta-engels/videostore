@@ -1,5 +1,6 @@
 @extends('layouts.default')
-@section('title','Startseite')
+
+@section('title','Start')
 @section('header','Startseite')
 
 @section('content')

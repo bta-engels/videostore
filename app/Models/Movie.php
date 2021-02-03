@@ -5,14 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Author extends Model
+class Movie extends Model
 {
     use HasFactory;
 
-    protected $table = 'authors';
-
-    public function movies()
-    {
-        return $this->hasMany(Movie::class);
-    }
+	protected $table = 'movies';
 }

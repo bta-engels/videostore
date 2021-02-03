@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Author;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class AuthorController extends Controller
+class MovieController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,21 +15,19 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $data = Author::all();
-        return view('public.authors.index', compact('data'));
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Author $author
+     * @param Movie $movie
      * @return Response
      */
-    public function show(Author $author)
+    public function show(Movie $movie)
     {
-        return view('public.authors.show', compact('author'));
+        //
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -53,14 +50,13 @@ class AuthorController extends Controller
         //
     }
 
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Author $author
+     * @param Movie $movie
      * @return Response
      */
-    public function edit(Author $author)
+    public function edit(Movie $movie)
     {
         //
     }
@@ -69,10 +65,10 @@ class AuthorController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param Author $author
+     * @param Movie $movie
      * @return Response
      */
-    public function update(Request $request, Author $author)
+    public function update(Request $request, Movie $movie)
     {
         //
     }
@@ -80,10 +76,10 @@ class AuthorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Author $author
+     * @param Movie $movie
      * @return Response
      */
-    public function destroy(Author $author)
+    public function destroy(Movie $movie)
     {
         //
     }

@@ -6,6 +6,9 @@
 @section('content')
     <div class="align-content-center">
         <h5>{{ $author->id }} {{ $author->firstname }} {{ $author->lastname }}</h5>
-        <div></div>
+        <h6>Anzahl Filme: {{ $author->movies->count() }}</h6>
+        <div>
+            <!-- gib alle movie titel aus -->
+        </div>
     </div>
 @endsection

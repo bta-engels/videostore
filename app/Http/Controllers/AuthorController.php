@@ -56,7 +56,16 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        die(__METHOD__);
+/*
+        $author = new Author();
+        $author->firstname  = $request->post('firstname');
+        $author->lastname   = $request->post('lastname');
+        $author->save();
+*/
+        // mass assigment
+        $newData = $request->only( ['firstname', 'lastname'] );
+        Author::create($newData);
+        return redirect()->route('authors');
     }
 
     /**
@@ -79,8 +88,19 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
+        // werte einzeln zuweisen
+/*
+        $author->firstname  = $request->post('firstname');
+        $author->lastname   = $request->post('lastname');
+        // alles speichern in Tabelle authors
+        $author->save();
+*/
 
-//        return redirect()->route('authors');
+        // oder via 'mass assignment'
+        $newData = $request->only( ['firstname', 'lastname'] );
+        $author->update($newData);
+
+        return redirect()->route('authors');
     }
 
     /**

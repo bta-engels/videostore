@@ -18,13 +18,14 @@ class AuthorController extends Controller
     public function index()
     {
         $data = Author::all();
-        if(Auth::check()){
+        // bin ich eingeloggt?
+        if(Auth::check()) {
             return view('admin.authors.index', compact('data'));
-        } else {
+        }
+        // oder nicht
+        else {
             return view('public.authors.index', compact('data'));
         }
-
-
     }
 
     /**
@@ -35,7 +36,6 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        $movies = Movie::whereAuthorId($author->id)->get();
         return view('public.authors.show', compact('author'));
     }
 
@@ -46,7 +46,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.authors.create');
     }
 
     /**
@@ -68,7 +68,7 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        //
+        return view('admin.authors.edit', compact('author'));
     }
 
     /**
@@ -80,7 +80,7 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+        dd($request->post());
     }
 
     /**

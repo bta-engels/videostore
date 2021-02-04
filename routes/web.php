@@ -31,6 +31,28 @@ Route::get('authors', [AuthorController::class, 'index']) ->name('authors');
 Route::get('authors/{author}', [AuthorController::class, 'show']) ->name('authors.show');
 
 
+// Route-Gruppe für Routen, für die man eingeloggt ('middleware' => 'auth') sein muss, alle mit Präfix 'authors'
+Route::group([
+    'middleware' => 'auth',
+    'prefix' => 'authors',
+], function() {
+// Route zu leerem Formular, um neuen Autor anzulegen
+    Route::get('/create', [AuthorController::class, 'create'])->name('authors.create');
+    Route::get('/edit/{author}', [AuthorController::class, 'edit'])->name('authors.edit');
+    Route::get('/destroy/{author}', [AuthorController::class, 'destroy'])->name('authors.destroy');
+// Route zum Speichern eines neuen Autors/einer Änderung -> post, da bei Abschicken eines Forms
+    Route::post('/store', [AuthorController::class, 'store'])->name('authors.store');
+// Route, um Autoren zu ändern (mit post, da Form abgeschickt wird)
+    Route::post('/update/{author}', [AuthorController::class, 'update'])->name('authors.update');
+});
+
+
+
+
+
+
+
+
 // wenn eine route aufgerufen wird, die nicht definiert wurde
 Route::fallback(function() {
     $message = '<h1>Diese Route gibt\'s nicht bei mir!</h1>';

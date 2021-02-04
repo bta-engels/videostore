@@ -86,7 +86,7 @@ class AuthorController extends Controller
     // $request ist, was als durch das Formular abgeschickt wurde
     public function update(Request $request, Author $author)
     {
-
+        dd($request->post());
     }
 
     /**

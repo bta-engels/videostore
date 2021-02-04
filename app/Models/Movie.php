@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Movie extends Model
 {
-    use HasFactory;
-
 	protected $table = 'movies';
+
+	public function author()
+    {
+//	    Ruft Relation mit Author-Klasse ab (n zu 1-Relation)
+        return $this->belongsTo(Author::class)
+    }
 }

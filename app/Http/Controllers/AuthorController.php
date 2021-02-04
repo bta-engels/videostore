@@ -16,6 +16,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
+        // Gibt array-Objekt mit Autor-Einträgen zurück
         $data = Author::all();
         return view('public.authors.index', compact('data'));
     }
@@ -26,7 +27,7 @@ class AuthorController extends Controller
      * @param Author $author
      * @return Response
      */
-//    Dependency -> Laravel liefert automatisch das Autor-Objekt, obwohl nur die id übergeben wird
+//    Dependency injection -> Laravel liefert automatisch das Autor-Objekt, obwohl nur die id übergeben wird
     public function show(Author $author)
     {
         return view('public.authors.show', compact('author'));

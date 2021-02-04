@@ -9,6 +9,10 @@
         <h6>Anzahl Filme: {{ $author->movies->count() }}</h6>
         <div>
             <!-- Gib alle movie-Titel des Autoren aus -->
+            <ul>
+                @foreach($author->movies as $movie)
+                <li>$movie->title</li>
+            </ul>
         </div>
     </div>
 @endsection

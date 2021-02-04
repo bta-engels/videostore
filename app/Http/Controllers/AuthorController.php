@@ -18,6 +18,7 @@ class AuthorController extends Controller
     {
         // Gibt array-Objekt mit Autor-Einträgen zurück
         $data = Author::all();
+//        return dd($data);
         return view('public.authors.index', compact('data'));
     }
 

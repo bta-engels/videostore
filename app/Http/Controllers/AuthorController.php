@@ -60,9 +60,18 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        die(__METHOD__);
-        $newData = $request->only( ['firstname', 'lastname']);
+        // Instanziere neue Author-Klasse
+        $author = new Author;
+        // Fülle Spalten mit eingegebenen Daten und speichere den Datensatz
+        $author->firstname = $request->post('firstname');
+        $author->lastname = $lastname = $request->post('lastname');
+        $author->save();
 
+        // mass assignment
+        //  // Hole benötigte Daten aus Eingegebenem
+        // $newData = $request->only( ['firstname', 'lastname']);
+        //  //Kreiere neuen Datensatz
+        // Author::create($newData);
 
 
         // Gib Daten der geänderten Tabelle aus
@@ -92,8 +101,8 @@ class AuthorController extends Controller
     public function update(Request $request, Author $author)
     {
         // Lese eingegebene Daten aus
-        $firstname = $request->post(key:'firstname');
-        $lastname = $request->post(key:'lastname');
+        $firstname = $request->post('firstname');
+        $lastname = $request->post('lastname');
 
         // überschreibe die Daten in der DB mit den eingegebenen Daten
         $author->firstname = $firstname;
@@ -109,8 +118,8 @@ class AuthorController extends Controller
 
         // mass assignment: hole array mit firstname und lastname aus den eingegebenen Daten
         // Achtung! Benötigt gesetzte fillable-Variable im zugehörigen Model
-        $newData = $request->only( ['firstname', 'lastname']);
-        $author->update($newData);
+        // $newData = $request->only( ['firstname', 'lastname']);
+        // $author->update($newData);
 
         // Gib Daten der geänderten Tabelle aus
         return redirect()->route('authors');

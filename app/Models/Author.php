@@ -11,4 +11,8 @@ class Author extends Model
 
     protected $table = 'authors';
 
+    public function movies()
+    {
+        return $this->hasMany(Movie::class);
+    }
 }

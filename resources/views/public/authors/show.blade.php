@@ -10,7 +10,11 @@
         <div>
             <!-- gib alle movie titel aus -->
             <ul>
-                <li></li>
+                @forelse($author->movies as $movie)
+                    <li>{{ $movie->title }}</li>
+                @empty
+                    <p>Keine Filme</p>
+                @endforelse
             </ul>
         </div>
     </div>

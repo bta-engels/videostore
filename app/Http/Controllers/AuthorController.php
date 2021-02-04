@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Author;
 use App\Models\Movie;
 use Illuminate\Http\Request;
@@ -17,7 +18,13 @@ class AuthorController extends Controller
     public function index()
     {
         $data = Author::all();
-        return view('public.authors.index', compact('data'));
+        if(Auth::check()){
+            return view('admin.authors.index', compact('data'));
+        } else {
+            return view('public.authors.index', compact('data'));
+        }
+
+
     }
 
     /**

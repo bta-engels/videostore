@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use App\Models\Author;
-use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class AuthorController extends Controller
 {
@@ -61,7 +60,7 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        die(__METHOD__);
     }
 
 
@@ -86,7 +85,8 @@ class AuthorController extends Controller
     // $request ist, was als durch das Formular abgeschickt wurde
     public function update(Request $request, Author $author)
     {
-        dd($request->post());
+
+//        return redirect()->route('authors');
     }
 
     /**
@@ -97,6 +97,6 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        die(__METHOD__);
     }
 }

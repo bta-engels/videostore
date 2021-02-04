@@ -1,9 +1,9 @@
 @extends('layouts.default')
-@section('title','Edit Todo')
-@section('header','Edit Todo')
+@section('title','Edit Author')
+@section('header','Edit Author')
 
 @section('content')
-    <form method="post" action="{{ route('authors.update', ['id' => $data->id]) }}">
+    <form method="post" action="{{ route('authors.update', ['author' => $author->id]) }}">
         @csrf
         <div class="form-group row">
             <label for="firstname" class="col-md-2 col-form-label">Vorname</label>
@@ -12,7 +12,7 @@
                     type="text"
                     id="firstname"
                     name="firstname"
-                    value="{{$data->firstname}}"
+                    value="{{$author->firstname}}"
                     class="@error('firstname') is-invalid @enderror form-control px-1"
                 />
 
@@ -30,7 +30,7 @@
                     type="text"
                     id="lastname"
                     name="lastname"
-                    value="{{$data->lastname}}"
+                    value="{{$author->lastname}}"
                     class="@error('lastname') is-invalid @enderror form-control px-1"
                 />
 

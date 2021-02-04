@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +18,20 @@ Auth::routes();
 Route::get('/', function() {
     return view('start', );
 });
-Route::get('/test', function() {
-    return view('test', );
+
+Route::group([
+    'middleware' => 'auth',
+    'prefix'    => 'authors',
+], function() {
+    Route::get('create', [AuthorController::class, 'create'])->name('authors.create');
+    Route::get('edit/{author}', [AuthorController::class, 'edit'])->name('authors.edit');
+    Route::post('store', [AuthorController::class, 'store'])->name('authors.store');
+    Route::post('update/{author}', [AuthorController::class, 'update'])->name('authors.update');
+    Route::get('destroy/{author}', [AuthorController::class, 'destroy'])->name('authors.destroy');
 });
+Route::get('authors', [AuthorController::class, 'index'])->name('authors');
+Route::get('authors/{author}', [AuthorController::class, 'show'])->name('authors.show');
+
 // wenn eine route aufgerufen wird, die nicht definiert wurde
 Route::fallback(function() {
     $message = 'Diese Route gibt\'s nicht bei mir!';

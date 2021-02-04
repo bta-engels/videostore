@@ -9,8 +9,13 @@
         <h6>Anzahl Filme: {{ $author->movies->count() }}</h6>
         <div>
             <!-- gib alle movie titel aus -->
-            <ul>
-                <li></li>
+            <h5>Filme</h5>
+            <ul class="list-group-flush">
+                @forelse ($author->movies as $movie)
+                    <li class="list-group-item">{{ $movie->title }}</li>
+                @empty
+                    <p>Keine Filme vorhanden</p>
+                @endforelse
             </ul>
         </div>
     </div>

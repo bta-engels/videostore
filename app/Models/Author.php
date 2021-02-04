@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Author extends Model
 {
     protected $table = 'authors';
+    // fillable definiert Spalten, die man später überschreiben kann per mass assignment
+    protected $fillable = ['firstname', 'lastname'];
     public $timestamps = false;
 
     public function movies()

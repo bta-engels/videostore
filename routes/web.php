@@ -22,14 +22,6 @@ Route::get('/', function() {
 //    return view('test', );
 //});
 
-// Route zur Klasse AuthorController, Funktion 'index', Name der Route: 'authors'
-Route::get('authors', [AuthorController::class, 'index']) ->name('authors');
-
-
-// Route zur Einzelansicht: Aufruf der Funktion 'show', Routenname: 'authors.show'
-// {author} wird als Parameter der show-Funktion übergeben
-Route::get('authors/{author}', [AuthorController::class, 'show']) ->name('authors.show');
-
 
 // Route-Gruppe für Routen, für die man eingeloggt ('middleware' => 'auth') sein muss, alle mit Präfix 'authors'
 Route::group([
@@ -42,7 +34,11 @@ Route::group([
     Route::post('update/{author}', [AuthorController::class, 'update'])->name('authors.update');
     Route::get('destroy/{author}', [AuthorController::class, 'destroy'])->name('authors.destroy');
 });
+// Route zur Klasse AuthorController, Funktion 'index', Name der Route: 'authors'
 Route::get('authors', [AuthorController::class, 'index'])->name('authors');
+
+// Route zur Einzelansicht: Aufruf der Funktion 'show', Routenname: 'authors.show'
+// {author} wird als Parameter der show-Funktion übergeben
 Route::get('authors/{author}', [AuthorController::class, 'show'])->name('authors.show');
 
 // wenn eine route aufgerufen wird, die nicht definiert wurde

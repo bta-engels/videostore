@@ -61,6 +61,12 @@ class AuthorController extends Controller
     public function store(Request $request)
     {
         die(__METHOD__);
+        $newData = $request->only( ['firstname', 'lastname']);
+
+
+
+        // Gib Daten der geänderten Tabelle aus
+        return redirect()->route('authors');
     }
 
 
@@ -85,8 +91,29 @@ class AuthorController extends Controller
     // $request ist, was als durch das Formular abgeschickt wurde
     public function update(Request $request, Author $author)
     {
+        // Lese eingegebene Daten aus
+        $firstname = $request->post(key:'firstname');
+        $lastname = $request->post(key:'lastname');
 
-//        return redirect()->route('authors');
+        // überschreibe die Daten in der DB mit den eingegebenen Daten
+        $author->firstname = $firstname;
+        $author->lastname = $lastname;
+
+        // alternativ als Einzeiler
+        // $author->firstname = $request->post(key:'firstname');
+        // $author->lastname = $lastname = $request->post(key:'lastname');
+
+        // speichere geänderte Daten in der Tabelle
+        $author->save();
+
+
+        // mass assignment: hole array mit firstname und lastname aus den eingegebenen Daten
+        // Achtung! Benötigt gesetzte fillable-Variable im zugehörigen Model
+        $newData = $request->only( ['firstname', 'lastname']);
+        $author->update($newData);
+
+        // Gib Daten der geänderten Tabelle aus
+        return redirect()->route('authors');
     }
 
     /**

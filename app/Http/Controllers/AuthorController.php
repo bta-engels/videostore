@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Author;
 use App\Models\Movie;
 use Illuminate\Http\Request;
@@ -17,7 +18,14 @@ class AuthorController extends Controller
     public function index()
     {
         $data = Author::all();
-        return view('public.authors.index', compact('data'));
+        // bin ich eingeloggt?
+        if(Auth::check()) {
+            return view('admin.authors.index', compact('data'));
+        }
+        // oder nicht
+        else {
+            return view('public.authors.index', compact('data'));
+        }
     }
 
     /**
@@ -38,7 +46,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.authors.create');
     }
 
     /**
@@ -60,7 +68,7 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        //
+        return view('admin.authors.edit', compact('author'));
     }
 
     /**
@@ -72,7 +80,7 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+        dd($request->post());
     }
 
     /**

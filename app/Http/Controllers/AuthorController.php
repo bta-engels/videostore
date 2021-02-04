@@ -116,8 +116,8 @@ class AuthorController extends Controller
         $author->save();
 
 
-        // mass assignment: hole array mit firstname und lastname aus den eingegebenen Daten
-        // Achtung! Benötigt gesetzte fillable-Variable im zugehörigen Model
+        //  // mass assignment: hole array mit firstname und lastname aus den eingegebenen Daten
+        //  // Achtung! Benötigt gesetzte fillable-Variable im zugehörigen Model
         // $newData = $request->only( ['firstname', 'lastname']);
         // $author->update($newData);
 

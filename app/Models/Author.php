@@ -36,5 +36,4 @@ class Author extends Model
 //      -> mehrere Datensätze als Array (Collection-Objekt)
         return $this->hasMany(Movie::class);
     }
-
 }

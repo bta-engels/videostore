@@ -1,6 +1,6 @@
 @extends('layouts.default')
-@section('title','Edit Todo')
-@section('header','Edit Todo')
+@section('title','Create Author')
+@section('header','Create Author')
 
 @section('content')
     <form method="post" action="{{ route('authors.store') }}">

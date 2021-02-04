@@ -1,6 +1,6 @@
 @extends('layouts.default')
-@section('title','Edit Todo')
-@section('header','Edit Todo')
+@section('title','Edit Author')
+@section('header','Edit Author')
 
 @section('content')
     <form method="post" action="{{ route('authors.update', ['author' => $author->id]) }}">

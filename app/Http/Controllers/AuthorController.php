@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -27,6 +28,7 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
+        $movies = Movie::whereAuthorId($author->id)->get();
         return view('public.authors.show', compact('author'));
     }
 

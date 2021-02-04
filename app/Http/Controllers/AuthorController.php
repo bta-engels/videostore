@@ -50,7 +50,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.authors.create');
     }
 
     /**
@@ -83,9 +83,10 @@ class AuthorController extends Controller
      * @param Author $author
      * @return Response
      */
+    // $request ist, was als durch das Formular abgeschickt wurde
     public function update(Request $request, Author $author)
     {
-        //
+
     }
 
     /**

@@ -79,8 +79,17 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
+        $author ->firstname = $request->post('firstname');
+        $author->lastname = $request->post('lastname');
 
-//        return redirect()->route('authors');
+        $author->save();
+
+
+
+
+
+        return redirect()->route('authors');
+
     }
 
     /**

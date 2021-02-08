@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Todo;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TodoFactory extends Factory
 {
@@ -22,8 +22,8 @@ class TodoFactory extends Factory
     public function definition()
     {
         return [
-            'done' => $this->faker->boolean,
-            'text' => $this->faker->text(50),
+            'done'  => $this->faker->boolean,
+            'text'  => $this->faker->text(50),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthorRequest;
 use App\Models\Author;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -51,10 +52,10 @@ class AuthorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param AuthorRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(AuthorRequest $request)
     {
 /*
         $author = new Author();
@@ -63,8 +64,7 @@ class AuthorController extends Controller
         $author->save();
 */
         // mass assigment
-        $newData = $request->only( ['firstname', 'lastname'] );
-        Author::create($newData);
+        Author::create($request->validated());
         return redirect()->route('authors');
     }
 

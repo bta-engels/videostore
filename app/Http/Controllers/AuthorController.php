@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthorRequest;
 use App\Models\Author;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -57,27 +58,36 @@ class AuthorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param AuthorRequest $request
      * @return Response
      */
-    public function store(Request $request)  // mit Request kommt man an Formulardaten
+    public function store(AuthorRequest $request)  // mit Request kommt man an Formulardaten
     {
-//        // Instanziere neue Author-Klasse
-//        $author = new Author;
-//        // Fülle Spalten mit eingegebenen Daten und speichere den Datensatz
-//        $author->firstname = $request->post('firstname');
-//        $author->lastname = $request->post('lastname');
-//        $author->save();
 
-          // mass assignment
-          // Hole benötigte Daten aus Eingegebenem
-         $newData = $request->only( ['firstname', 'lastname']);
-          //Kreiere neuen Datensatz mit eingegebenen Daten
-         Author::create($newData);
+//       // Instanziere neue Author-Klasse
+//       $author = new Author;
+//       // Fülle Spalten mit eingegebenen Daten und speichere den Datensatz
+//       $author->firstname = $request->post('firstname');
+//       $author->lastname = $request->post('lastname');
+//       $author->save();
+
+         // mass assignment
+         // Hole benötigte Daten aus Eingegebenem
+//       $newData = $request->only( ['firstname', 'lastname']);
+
+         //Kreiere neuen Datensatz mit eingegebenen Daten
+//       Author::create($newData);
+//
+//
+//       // Gib Daten der geänderten Tabelle aus
+//       return redirect()->route('authors');
 
 
-        // Gib Daten der geänderten Tabelle aus
-        return redirect()->route('authors');
+         // Automatische Validierung der eingegebenen Daten, falls Fehler: Zurückleitung zu create.blade
+         // Legt neuen Datensatz mit eingegebenen daten an
+         Author::create($request->validated());
+         return redirect()->route('authors');
+
     }
 
 
@@ -95,33 +105,37 @@ class AuthorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param AuthorRequest $request
      * @param Author $author
      * @return Response
      */
     // $request ist, was als durch das Formular abgeschickt wurde
-    public function update(Request $request, Author $author)
+    public function update(AuthorRequest $request, Author $author)
     {
-        // Lese eingegebene Daten aus
-        $firstname = $request->post('firstname');
-        $lastname = $request->post('lastname');
+//        // Lese eingegebene Daten aus
+//        $firstname = $request->post('firstname');
+//        $lastname = $request->post('lastname');
+//
+//        // überschreibe die Daten in der DB mit den eingegebenen Daten
+//        $author->firstname = $firstname;
+//        $author->lastname = $lastname;
+//
+//        // alternativ als Einzeiler
+//        // $author->firstname = $request->post(key:'firstname');
+//        // $author->lastname = $lastname = $request->post(key:'lastname');
+//
+//        // speichere geänderte Daten in der Tabelle
+//        $author->save();
+//
+//
+//        //  // mass assignment: hole array mit firstname und lastname aus den eingegebenen Daten
+//        //  // Achtung! Benötigt gesetzte fillable-Variable im zugehörigen Model
+//        // $newData = $request->only( ['firstname', 'lastname']);
+//        // $author->update($newData);
 
-        // überschreibe die Daten in der DB mit den eingegebenen Daten
-        $author->firstname = $firstname;
-        $author->lastname = $lastname;
 
-        // alternativ als Einzeiler
-        // $author->firstname = $request->post(key:'firstname');
-        // $author->lastname = $lastname = $request->post(key:'lastname');
-
-        // speichere geänderte Daten in der Tabelle
-        $author->save();
-
-
-        //  // mass assignment: hole array mit firstname und lastname aus den eingegebenen Daten
-        //  // Achtung! Benötigt gesetzte fillable-Variable im zugehörigen Model
-        // $newData = $request->only( ['firstname', 'lastname']);
-        // $author->update($newData);
+        // Update Daten mit eingegebenen, validierten Daten
+        $author->update($request->validated());
 
         // Gib Daten der geänderten Tabelle aus
         return redirect()->route('authors');

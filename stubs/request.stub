@@ -27,4 +27,15 @@ class {{ class }} extends FormRequest
             //
         ];
     }
+
+   /**
+     * Gib mir meine eigenen Fehlermeldungen aus
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+
+        ];
+    }
 }

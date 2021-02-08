@@ -13,12 +13,12 @@ class CreateTodosTable extends Migration
      */
     public function up()
     {
-        Schema::table('todos', function (Blueprint $table) {
+        Schema::create('todos', function (Blueprint $table) {
             $table->id();
             $table->boolean("done")->default(false);
-            $table->string(text, 50);
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->string("text", 50);
+            $table->timestamps();
+
         });
     }
 

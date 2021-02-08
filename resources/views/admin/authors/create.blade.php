@@ -5,7 +5,6 @@
 @section('content')
     <x-form :action="route('authors.store')">
         <x-form-input name="firstname" label="Vorname" />
-        
         <x-form-input name="lastname" label="Nachname" />
         <x-form-submit>
             <span>Autor anlegen</span>

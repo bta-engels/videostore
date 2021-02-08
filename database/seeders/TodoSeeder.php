@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Todo;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class TodoSeeder extends Seeder
 {
@@ -15,7 +14,7 @@ class TodoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('todos')->truncate();
+        Todo::truncate();
         Todo::factory()->count(10)->create();
     }
 }

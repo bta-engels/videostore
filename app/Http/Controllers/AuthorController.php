@@ -16,7 +16,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $data = Author::all();
+        $data = Author::paginate(10);
         // bin ich eingeloggt?
         if(Auth::check()) {
             return view('admin.authors.index', compact('data'));
@@ -111,6 +111,7 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        die(__METHOD__);
+        $author->delete();
+        return redirect()->route('authors');
     }
 }

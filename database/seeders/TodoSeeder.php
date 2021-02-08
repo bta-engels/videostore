@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Todo;
 use Illuminate\Database\Seeder;
 
 class TodoSeeder extends Seeder
@@ -13,10 +14,14 @@ class TodoSeeder extends Seeder
      */
     public function run()
     {
-        // leeren der tabelle todos, falls daten darin enthalten sind
-        DB::table('todos')->truncate();
-        // wir erstellen mittels der Todos Factory 10 Testdatensätze
-        // und schreiben diese in unsere tabelle "todos"
+        Todo::truncate();
         Todo::factory()->count(10)->create();
+
+
+    /*    Todo::create([
+            'id' => 0,
+            'done' => 0,
+            'text' => 'test',
+        ]);*/
     }
 }

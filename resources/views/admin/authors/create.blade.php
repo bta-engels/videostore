@@ -5,24 +5,24 @@
 @section('content')
     <form method="post" action="{{ route('authors.store') }}">
         @csrf
-        <div class="form-group row">
-            <label for="firstname" class="col-md-2 col-form-label">Vorname</label>
-            <div class="col-md-10">
-                <input
-                    type="text"
-                    id="firstname"
-                    name="firstname"
-                    value=""
-                    class="@error('firstname') is-invalid @enderror form-control px-1"
-                />
+{{--        <div class="form-group row">--}}
+{{--            <label for="firstname" class="col-md-2 col-form-label">Vorname</label>--}}
+{{--            <div class="col-md-10">--}}
+{{--                <input--}}
+{{--                    type="text"--}}
+{{--                    id="firstname"--}}
+{{--                    name="firstname"--}}
+{{--                    value=""--}}
+{{--                    class="@error('firstname') is-invalid @enderror form-control px-1"--}}
+{{--                />--}}
 
-                @error('firstname')
-                <span class="d-block invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('firstname') }}</strong>
-                </span>
-                @enderror
-            </div>
-        </div>
+{{--                @error('firstname')--}}
+{{--                <span class="d-block invalid-feedback" role="alert">--}}
+{{--                    <strong>{{ $errors->first('firstname') }}</strong>--}}
+{{--                </span>--}}
+{{--                @enderror--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <div class="form-group row">
             <label for="lastname" class="col-md-2 col-form-label">Nachname</label>
             <div class="col-md-10">

@@ -64,7 +64,8 @@ class AuthorController extends Controller
         $author->save();
 */
         // mass assigment
-        Author::create($request->validated());
+        // legt neuen autor mit validierten daten an
+        Author::create( $request->validated() );
         return redirect()->route('authors');
     }
 
@@ -82,11 +83,11 @@ class AuthorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param AuthorRequest $request
      * @param Author $author
      * @return Response
      */
-    public function update(Request $request, Author $author)
+    public function update(AuthorRequest $request, Author $author)
     {
         // werte einzeln zuweisen
 /*
@@ -97,9 +98,7 @@ class AuthorController extends Controller
 */
 
         // oder via 'mass assignment'
-        $newData = $request->only( ['firstname', 'lastname'] );
-        $author->update($newData);
-
+        $author->update($request->validated());
         return redirect()->route('authors');
     }
 

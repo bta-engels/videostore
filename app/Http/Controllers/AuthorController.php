@@ -70,11 +70,11 @@ class AuthorController extends Controller
 //       $author->lastname = $request->post('lastname');
 //       $author->save();
 
-         // mass assignment
-         // Hole benötigte Daten aus Eingegebenem
+        // mass assignment
+        // Hole benötigte Daten aus Eingegebenem
 //       $newData = $request->only( ['firstname', 'lastname']);
 
-         //Kreiere neuen Datensatz mit eingegebenen Daten
+        //Kreiere neuen Datensatz mit eingegebenen Daten
 //       Author::create($newData);
 //
 //
@@ -82,11 +82,11 @@ class AuthorController extends Controller
 //       return redirect()->route('authors');
 
 
-         // Automatische Validierung der eingegebenen Daten, falls Fehler: Zurückleitung zu create.blade
-         // Legt neuen Datensatz mit eingegebenen daten an
-         Author::create($request->validated());
-         return redirect()->route('authors');
-
+        // Automatische Validierung der eingegebenen Daten, falls Fehler: Zurückleitung zu create.blade
+        // Legt neuen Datensatz mit eingegebenen daten an
+        Author::create($request->validated());
+        return redirect()->route('authors');
+    }
 
 
     /**

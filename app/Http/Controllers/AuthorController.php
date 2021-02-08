@@ -16,8 +16,10 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        // Gibt array-Objekt mit Autor-Einträgen zurück
-        $data = Author::all();
+        //  //Gibt array-Objekt mit Autor-Einträgen zurück
+         $data = Author::all();
+        // paginate-Funktion ermöglicht Paginierung -> gib 10 Datensätze pro Block aus
+//        $data = Author::paginate(10);
         // return dd($data);
         // Prüfe, ob ich eingeloggt bin und zeige dann admin-index
         if(Auth::check()) {
@@ -58,20 +60,20 @@ class AuthorController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request)  // mit Request kommt man an Formulardaten
     {
-        // Instanziere neue Author-Klasse
-        $author = new Author;
-        // Fülle Spalten mit eingegebenen Daten und speichere den Datensatz
-        $author->firstname = $request->post('firstname');
-        $author->lastname = $lastname = $request->post('lastname');
-        $author->save();
+//        // Instanziere neue Author-Klasse
+//        $author = new Author;
+//        // Fülle Spalten mit eingegebenen Daten und speichere den Datensatz
+//        $author->firstname = $request->post('firstname');
+//        $author->lastname = $request->post('lastname');
+//        $author->save();
 
-        // mass assignment
-        //  // Hole benötigte Daten aus Eingegebenem
-        // $newData = $request->only( ['firstname', 'lastname']);
-        //  //Kreiere neuen Datensatz
-        // Author::create($newData);
+          // mass assignment
+          // Hole benötigte Daten aus Eingegebenem
+         $newData = $request->only( ['firstname', 'lastname']);
+          //Kreiere neuen Datensatz mit eingegebenen Daten
+         Author::create($newData);
 
 
         // Gib Daten der geänderten Tabelle aus
@@ -133,6 +135,7 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        die(__METHOD__);
+        $author->delete();
+        return redirect()->route('authors');
     }
 }

@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Todo;
+//use Illuminate\Support\Facades\DB;
 
 
 

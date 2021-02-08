@@ -9,6 +9,7 @@
             <i class="fas fa-plus-square"></i>Create new Author</a>
     </div>
     <div class="mt-3">
+        {{ $data->links() }}
         <table class="table table-striped">
             <tr>
                 <th>ID</th>

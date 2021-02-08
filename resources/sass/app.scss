@@ -11,14 +11,12 @@ i.fas {
     margin-right: 5px;
 }
 
-// container-Block aus Grundlayout anpassen
 .container {
     nav {
         svg {
             width: 1.5rem;
             height: 1.5rem;
         }
-
         div {
             span {
                 padding: 0;
@@ -28,4 +26,6 @@ i.fas {
             }
         }
     }
+
 }
+

@@ -8,10 +8,10 @@
         <!-- hier todos tabellarisch darstellen -->
         <!-- if abfrage, ob welche vorhanden sind -->
 
-        @if( count($data) > 0 )
-{{--        interne links-Funktion wird durch paginate-Funktion der $data-Variablen zur Verfügung gestellt --}}
-{{--        gibt Navigationsblock für Navigation durch Datensätze aus --}}
-{{--            {{ $data->links() }}--}}
+        @if( $data->count() > 0 )
+
+            {{ $data->links() }}
+
             <!-- wenn ja, dann tabelle darstellen -->
             <table class="table table-striped">
                 <tr>

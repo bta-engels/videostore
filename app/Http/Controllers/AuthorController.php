@@ -18,10 +18,9 @@ class AuthorController extends Controller
     public function index()
     {
         //  //Gibt array-Objekt mit Autor-Einträgen zurück
-         $data = Author::all();
+//         $data = Author::all();
         // paginate-Funktion ermöglicht Paginierung -> gib 10 Datensätze pro Block aus
-//        $data = Author::paginate(10);
-        // return dd($data);
+        $data = Author::paginate(10);
         // Prüfe, ob ich eingeloggt bin und zeige dann admin-index
         if(Auth::check()) {
             return view('admin.authors.index', compact('data'));
@@ -61,7 +60,7 @@ class AuthorController extends Controller
      * @param AuthorRequest $request
      * @return Response
      */
-    public function store(AuthorRequest $request)  // mit Request kommt man an Formulardaten
+    public function store(AuthorRequest $request)
     {
 
 //       // Instanziere neue Author-Klasse
@@ -88,7 +87,6 @@ class AuthorController extends Controller
          Author::create($request->validated());
          return redirect()->route('authors');
 
-    }
 
 
     /**
@@ -109,8 +107,8 @@ class AuthorController extends Controller
      * @param Author $author
      * @return Response
      */
-    // $request ist, was als durch das Formular abgeschickt wurde
-    public function update(AuthorRequest $request, Author $author)
+        // $request ist, was als durch das Formular abgeschickt wurde
+        public function update(AuthorRequest $request, Author $author)
     {
 //        // Lese eingegebene Daten aus
 //        $firstname = $request->post('firstname');
@@ -132,7 +130,6 @@ class AuthorController extends Controller
 //        //  // Achtung! Benötigt gesetzte fillable-Variable im zugehörigen Model
 //        // $newData = $request->only( ['firstname', 'lastname']);
 //        // $author->update($newData);
-
 
         // Update Daten mit eingegebenen, validierten Daten
         $author->update($request->validated());

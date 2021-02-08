@@ -28,14 +28,13 @@ class {{ class }} extends FormRequest
         ];
     }
 
-   /**
-     * Gib mir meine eigenen Fehlermeldungen aus
+    /**
+     * Gib mir meine eigene Fehlermeldungen aus
      * @return array
      */
     public function messages()
     {
         return [
-
         ];
     }
 }

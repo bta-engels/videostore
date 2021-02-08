@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthorRequest;
 use App\Models\Author;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -16,7 +17,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $data = Author::all();
+        $data = Author::paginate(10);
         // bin ich eingeloggt?
         if(Auth::check()) {
             return view('admin.authors.index', compact('data'));
@@ -51,10 +52,10 @@ class AuthorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param AuthorRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(AuthorRequest $request)
     {
 /*
         $author = new Author();
@@ -63,8 +64,8 @@ class AuthorController extends Controller
         $author->save();
 */
         // mass assigment
-        $newData = $request->only( ['firstname', 'lastname'] );
-        Author::create($newData);
+        // legt neuen autor mit validierten daten an
+        Author::create( $request->validated() );
         return redirect()->route('authors');
     }
 
@@ -82,11 +83,11 @@ class AuthorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param AuthorRequest $request
      * @param Author $author
      * @return Response
      */
-    public function update(Request $request, Author $author)
+    public function update(AuthorRequest $request, Author $author)
     {
         // werte einzeln zuweisen
 /*
@@ -97,9 +98,7 @@ class AuthorController extends Controller
 */
 
         // oder via 'mass assignment'
-        $newData = $request->only( ['firstname', 'lastname'] );
-        $author->update($newData);
-
+        $author->update($request->validated());
         return redirect()->route('authors');
     }
 
@@ -111,6 +110,7 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        die(__METHOD__);
+        $author->delete();
+        return redirect()->route('authors');
     }
 }

@@ -7,5 +7,6 @@
     <div class="align-content-center">
         <h6>Preis: € {{ $movie->price }}</h6>
         <h6>Autor: {{ $movie->author->name }}</h6>
+        <img src="{{ asset('/storage/images/' . $movie->image) }}">
     </div>
 @endsection

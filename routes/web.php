@@ -35,7 +35,7 @@ Route::get('authors/{author}', [AuthorController::class, 'show'])->name('authors
 
 Route::group([
     'middleware' => 'auth',
-    'prefix'    => 'authors',
+    'prefix'    => 'movies',
 ], function() {
     Route::get('create', [MovieController::class, 'create'])->name('movies.create');
     Route::get('edit/{movie}', [MovieController::class, 'edit'])->name('movies.edit');
@@ -44,7 +44,7 @@ Route::group([
     Route::get('destroy/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
 });
 Route::get('movies', [MovieController::class, 'index'])->name('movies');
-Route::get('movies/{author}', [MovieController::class, 'show'])->name('movies.show');
+Route::get('movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
 
 // wenn eine route aufgerufen wird, die nicht definiert wurde
 Route::fallback(function() {

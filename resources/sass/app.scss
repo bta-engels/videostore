@@ -10,19 +10,7 @@ i.fas {
     display: inline;
     margin-right: 5px;
 }
-.container {
-    nav {
-        svg {
-            width: 1.5rem;
-            height: 1.5rem;
-        }
-        div {
-            span {
-                padding: 0;
-                a, span {
-                    padding: 0 5px !important;
-                }
-            }
-        }
-    }
+.invalid-feedback {
+    display: block;
 }
+

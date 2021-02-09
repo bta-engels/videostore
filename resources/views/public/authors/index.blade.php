@@ -8,7 +8,10 @@
         <!-- hier todos tabellarisch darstellen -->
         <!-- if abfrage, ob welche vorhanden sind -->
 
-        @if( count($data) > 0 )
+        @if( $data->count() > 0 )
+
+            {{ $data->links() }}
+
             <!-- wenn ja, dann tabelle darstellen -->
             <table class="table table-striped">
                 <tr>

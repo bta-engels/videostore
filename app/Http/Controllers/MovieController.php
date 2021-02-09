@@ -17,6 +17,8 @@ class MovieController extends Controller
      * MovieController constructor.
      * @param $authors
      */
+    // constructor wird bei jeder Instanzierung als erstes aufgerufen
+    // Speichere alle Autorennamen auf die Variable $authors
     public function __construct()
     {
         $this->authors = Author::all()
@@ -73,6 +75,13 @@ class MovieController extends Controller
      */
     public function store(MovieRequest $request)
     {
+        // File-Upload über Input-Feld 'image'
+        // und Speichern im Ordner storage/app/public/images
+        if ($request->hasFile('image')) {
+            $request->image->store('public/images');
+        }
+
+
         Movie::create($request->validated());
         return redirect()->route('movies');
     }

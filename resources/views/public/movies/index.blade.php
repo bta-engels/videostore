@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
-@section('title','Autoren')
-@section('header','Autoren')
+@section('title','Movies')
+@section('header','Movies')
 
 @section('content')
     <div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\MovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,16 @@ Route::fallback(function() {
     $message = 'Diese Route gibt\'s nicht bei mir!';
     return view('errors.message', compact('message'));
 });
+
+Route::group([
+    'middleware' => 'auth',
+    'prefix'    => 'authors',
+], function() {
+    Route::get('create', [MovieController::class, 'create'])->name('movies.create');
+    Route::get('edit/{movie}', [MovieController::class, 'edit'])->name('movies.edit');
+    Route::post('store', [MovieController::class, 'store'])->name('movies.store');
+    Route::post('update/{movie}', [MovieController::class, 'update'])->name('movies.update');
+    Route::get('destroy/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
+});
+Route::get('movies', [MovieController::class, 'index'])->name('movies');
+Route::get('movies/{author}', [MovieController::class, 'show'])->name('movies.show');

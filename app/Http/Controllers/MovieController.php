@@ -96,7 +96,8 @@ class MovieController extends Controller
     {
         return view('admin.movies.edit', [
             'movie'     => $movie,
-            'authors'   => $this->authors]);
+            'authors'   => $this->authors
+        ]);
     }
 
     /**

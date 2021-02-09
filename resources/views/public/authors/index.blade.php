@@ -22,7 +22,8 @@
                 @foreach($data as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
-                        <td><a href="{{ route('authors.show', ['author' => $item->id]) }}">{{ $item->firstname }} {{ $item->lastname }}</a></td>
+                        <td><a href="{{ route('authors.show', ['author' => $item->id]) }}">
+                                {{ $item->name }}</a></td>
                     </tr>
                 @endforeach
             </table>

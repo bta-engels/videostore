@@ -5,19 +5,16 @@
 
 @section('content')
     <div class="align-content-center">
-        <h5 style="color:darkturquoise"><b>{{ $author->id }}: {{ $author->firstname }} {{ $author->lastname }}</b></h5>
+        <h5>{{ $author->id }} {{ $author->firstname }} {{ $author->lastname }}</h5>
         <h6>Anzahl Filme: {{ $author->movies->count() }}</h6>
-        <h5>Filme:</h5>
         <div>
-            <!-- Gib alle movie-Titel des Autoren aus -->
-            <ul>
-{{--                @foreach($author->movies as $movie)--}}
-{{--                <li>{{ $movie->title }}</li>--}}
-{{--                @endforeach--}}
-                @forelse($author->movies as $movie)
-                    <li>{{ $movie->title }}</li>
-                    @empty
-                    <p>Dieser Autor hat keine Filme</p>
+            <!-- gib alle movie titel aus -->
+            <h5>Filme</h5>
+            <ul class="list-group-flush">
+                @forelse ($author->movies as $movie)
+                    <li class="list-group-item">{{ $movie->title }}</li>
+                @empty
+                    <p>Keine Filme vorhanden</p>
                 @endforelse
             </ul>
         </div>

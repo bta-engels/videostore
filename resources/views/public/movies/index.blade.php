@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
-@section('title','Movies')
-@section('header','Movies')
+@section('title','Filme')
+@section('header','Filme')
 
 @section('content')
     <div>
@@ -16,14 +16,18 @@
             <table class="table table-striped">
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
+                    <th>Author</th>
+                    <th>Titel</th>
+                    <th>Preis</th>
                 </tr>
                 <!-- table data -->
                 @foreach($data as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
-                        <td><a href="{{ route('authors.show', ['author' => $item->id]) }}">
-                                {{ $item->name }}</a></td>
+                        <td>{{ $item->author->name }}</td>
+                        <td><a href="{{ route('movies.show', ['movie' => $item->id]) }}">
+                                {{ $item->title }}</a></td>
+                        <td>{{ $item->price}} €</td>
                     </tr>
                 @endforeach
             </table>

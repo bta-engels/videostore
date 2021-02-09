@@ -2,12 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MovieRequest;
+use App\Models\Author;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class MovieController extends Controller
 {
+    protected $authors;
+
+    /**
+     * MovieController constructor.
+     * @param $authors
+     */
+    public function __construct()
+    {
+        $this->authors = Author::all()
+            ->keyBy('id')
+            ->sortBy('name')
+            ->map->name
+        ;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +33,16 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
+
+        $data = Movie::paginate(20);
+        // bin ich eingeloggt?
+        if(Auth::check()) {
+            return view('admin.movies.index', compact('data'));
+        }
+        // oder nicht
+        else {
+            return view('public.movies.index', compact('data'));
+        }
     }
 
     /**
@@ -26,7 +53,7 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        //
+        return view('public.movies.show', compact('movie'));
     }
 
     /**
@@ -36,7 +63,7 @@ class MovieController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.movies.create', ['authors' => $this->authors]);
     }
 
     /**
@@ -45,9 +72,10 @@ class MovieController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(MovieRequest $request)
     {
-        //
+        Movie::create($request->validated());
+        return redirect()->route('movies');
     }
 
     /**
@@ -58,7 +86,7 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        //
+        return view('admin.movies.edit', compact('movie'));
     }
 
     /**
@@ -68,9 +96,10 @@ class MovieController extends Controller
      * @param Movie $movie
      * @return Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update(MovieRequest $request, Movie $movie)
     {
-        //
+        $movie->update($request->validated());
+        return redirect()->route('movies');
     }
 
     /**
@@ -81,6 +110,7 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        //
+        $movie->delete();
+        return redirect()->route('movies');
     }
 }

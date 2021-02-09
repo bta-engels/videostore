@@ -24,10 +24,10 @@
                 @foreach($data as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
-                        <td>{{$item->author->name}}</td>
+                        <td>{{ $item->author->name }}</td>
                         <td><a href="{{ route('movies.show', ['movie' => $item->id]) }}">
                                 {{ $item->title }}</a></td>
-                        <td>{{$item->price}}</td>
+                        <td>€ {{$item->price}}</td>
                     </tr>
                 @endforeach
             </table>

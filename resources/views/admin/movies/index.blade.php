@@ -25,8 +25,8 @@
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->author->name }}</td>
                     <td><a class="link" href="{{ route('movies.show', ['movie' => $item->id]) }}">
-                            {{ $item->title }} </a></td>
-                    <td>€ {{ $item->price }}</td>
+                            {{ $item->title }}</a></td>
+                    <td>{{ $item->price }} €</td>
                     <td><a role="button" class="btn-sm btn-primary"
                            href="{{ route('movies.edit', ['movie' => $item->id]) }}"><i class="fas fa-edit"></i>Edit</a></td>
                     <td><a role="button" class="btn-sm btn-danger"

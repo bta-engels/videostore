@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Author whereId($value)
  * @method static Builder|Author whereLastname($value)
  * @mixin Eloquent
+ * @property-read mixed $name
  */
 class Author extends Model
 {

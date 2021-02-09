@@ -20,9 +20,11 @@ class MovieController extends Controller
         if(Auth::check()) {
             return view('admin.movies.index', compact('data'));
         }
+        // oder nicht
         else {
             return view('public.movies.index', compact('data'));
         }
+
     }
 
     /**

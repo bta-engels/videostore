@@ -18,7 +18,6 @@ class MovieRequest extends FormRequest
      */
     public function authorize()
     {
-        // Gib Zustand der Auth-Funktion zurück (s. AuthorController)
         return Auth::check();
     }
 
@@ -30,7 +29,7 @@ class MovieRequest extends FormRequest
     public function rules()
     {
         return [
-            // Felder author_id und title sind Pflichtfeld
+            // Alles Plichtfelder und mindestens 3 Zeichen lang
             'author_id' => 'required',
             'title'     => 'required|min:3',
             'price'     => 'required',
@@ -39,8 +38,7 @@ class MovieRequest extends FormRequest
     }
 
     /**
-     * Gib mir meine eigenen Fehlermeldungen aus
-     * Überschreiben der vordefinierten messages-Funktion mit engl. default Fehlermeldungen
+     * Gib mir meine eigene Fehlermeldungen aus
      * @return array
      */
     public function messages()
@@ -48,10 +46,8 @@ class MovieRequest extends FormRequest
         return [
             'author_id.required'    => 'Bitte einen Autor angeben',
             'title.required'        => 'Bitte einen Titel angeben',
-            'title.min'             => 'Der Nachname muß mindesten :min Zeichen enthalten',
-            'price.required'        => 'Bitte einen Presi angeben',
+            'title.min'             => 'Der Titel muß mindesten :min Zeichen enthalten',
+            'price.required'        => 'Bitte einen Preis angeben',
         ];
     }
-
-
 }

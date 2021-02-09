@@ -33,13 +33,6 @@ Route::group([
 Route::get('authors', [AuthorController::class, 'index'])->name('authors');
 Route::get('authors/{author}', [AuthorController::class, 'show'])->name('authors.show');
 
-
-// wenn eine route aufgerufen wird, die nicht definiert wurde
-Route::fallback(function() {
-    $message = 'Diese Route gibt\'s nicht bei mir!';
-    return view('errors.message', compact('message'));
-});
-
 Route::group([
     'middleware' => 'auth',
     'prefix'    => 'authors',
@@ -52,3 +45,9 @@ Route::group([
 });
 Route::get('movies', [MovieController::class, 'index'])->name('movies');
 Route::get('movies/{author}', [MovieController::class, 'show'])->name('movies.show');
+
+// wenn eine route aufgerufen wird, die nicht definiert wurde
+Route::fallback(function() {
+    $message = 'Diese Route gibt\'s nicht bei mir!';
+    return view('errors.message', compact('message'));
+});

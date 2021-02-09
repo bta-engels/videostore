@@ -73,6 +73,11 @@ class MovieController extends Controller
      */
     public function store(MovieRequest $request)
     {
+        // file upload image
+        if ($request->hasFile('image')) {
+            $request->image->store('public/images');
+        }
+
         Movie::create($request->validated());
         return redirect()->route('movies');
     }

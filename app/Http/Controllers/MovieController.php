@@ -73,12 +73,12 @@ class MovieController extends Controller
      */
     public function store(MovieRequest $request)
     {
+        $validated = $request->validated();
         // file upload image
         if ($request->hasFile('image')) {
-            $request->image->store('public/images');
+            $validated = $this->setFileName('image', $request);
         }
-
-        Movie::create($request->validated());
+        Movie::create($validated);
         return redirect()->route('movies');
     }
 
@@ -105,7 +105,12 @@ class MovieController extends Controller
      */
     public function update(MovieRequest $request, Movie $movie)
     {
-        $movie->update($request->validated());
+        $validated = $request->validated();
+        // file upload image
+        if ($request->hasFile('image')) {
+            $validated = $this->setFileName('image', $request);
+        }
+        $movie->update($validated);
         return redirect()->route('movies');
     }
 
@@ -118,5 +123,18 @@ class MovieController extends Controller
     public function destroy(Movie $movie)
     {
         //
+    }
+
+    protected function setFileName(string $inputName, MovieRequest $request, string $path = 'public/images') {
+        // speicher validierte daten in $validated
+        $validated  = $request->validated();
+        // gib mir den hash namen der upload-datei
+        $hashName   = $request->$inputName->hashName();
+        // lade die datei hoch und speicher sie in $path mit dem namen $hashName
+        $request->$inputName->storeAs($path, $hashName);
+        // überschreibe mein $validated array-element mit dem key $inputName mit meinem hash-name
+        $validated[$inputName] = $hashName;
+
+        return $validated;
     }
 }

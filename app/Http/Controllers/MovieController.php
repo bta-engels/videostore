@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Movie;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\MovieRequest;
 use App\Models\Author;
+use App\Models\Movie;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class MovieController extends Controller
 {
@@ -23,9 +24,6 @@ class MovieController extends Controller
             ->sortBy('name')
             ->map->name
         ;
-
-
-        dd($this->authors);
     }
 
     /**

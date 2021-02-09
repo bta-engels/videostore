@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class MovieController extends Controller
 {
@@ -15,7 +16,13 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
+        $data = Movie::paginate(20);
+        if(Auth::check()) {
+            return view('admin.movies.index', compact('data'));
+        }
+        else {
+            return view('public.movies.index', compact('data'));
+        }
     }
 
     /**

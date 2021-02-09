@@ -15,7 +15,7 @@ use App\Http\Controllers\MovieController;
 */
 Auth::routes();
 
-// startseite
+// STARTSEITE
 Route::get('/', function() {
     return view('start' );
 });
@@ -23,7 +23,7 @@ Route::get('/', function() {
 //    return view('test', );
 //});
 
-
+// AUTHOR-ROUTEN
 // Route-Gruppe für Routen, für die man eingeloggt ('middleware' => 'auth') sein muss, alle mit Präfix 'authors'
 Route::group([
     'middleware' => 'auth',
@@ -42,12 +42,6 @@ Route::get('authors', [AuthorController::class, 'index'])->name('authors');
 // {author} wird als Parameter der show-Funktion übergeben
 Route::get('authors/{author}', [AuthorController::class, 'show'])->name('authors.show');
 
-// wenn eine route aufgerufen wird, die nicht definiert wurde
-Route::fallback(function() {
-    $message = '<h1>Diese Route gibt\'s nicht bei mir!</h1>';
-    // compact-Funktion: statt array Variablennamen als String benutzen
-    return view('errors.message', compact('message'));
-});
 
 
 // MOVIE-ROUTEN
@@ -67,3 +61,10 @@ Route::get('movies', [MovieController::class, 'index'])->name('movies');
 // Route zur Einzelansicht
 Route::get('movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
 
+
+// wenn eine route aufgerufen wird, die nicht definiert wurde
+Route::fallback(function() {
+    $message = '<h1>Diese Route gibt\'s nicht bei mir!</h1>';
+    // compact-Funktion: statt array Variablennamen als String benutzen
+    return view('errors.message', compact('message'));
+});

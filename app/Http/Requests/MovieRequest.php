@@ -44,11 +44,10 @@ class MovieRequest extends FormRequest
     public function messages()
     {
         return [
-            'author_id.required'=> 'Bitte einen Author angeben',
-            'title.required'    => 'Bitte einen Titel angeben',
-            'title.min'         => 'Der Titel muß mindesten :min Zeichen enthalten',
-            'price.required'    => 'Bitte einen Preis angeben',
+            'author_id.required'    => 'Bitte einen Autor angeben',
+            'title.required'        => 'Bitte einen Titel angeben',
+            'title.min'             => 'Der Titel muß mindesten :min Zeichen enthalten',
+            'price.required'        => 'Bitte einen Preis angeben',
         ];
     }
-
 }

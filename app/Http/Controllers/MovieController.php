@@ -33,9 +33,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-
         $data = Movie::paginate(20);
-        // bin ich eingeloggt?
         if(Auth::check()) {
             return view('admin.movies.index', compact('data'));
         }
@@ -43,6 +41,7 @@ class MovieController extends Controller
         else {
             return view('public.movies.index', compact('data'));
         }
+
     }
 
     /**
@@ -110,7 +109,6 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        $movie->delete();
-        return redirect()->route('movies');
+        //
     }
 }

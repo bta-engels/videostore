@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="m-0">
-        <a role="button" class="btn btn-primary" href="{{ route('authors.create') }}">
+        <a role="button" class="btn btn-primary" href="{{ route('movies.create') }}">
             <i class="fas fa-plus-square"></i>Create new Movie</a>
     </div>
     <div class="mt-3">
@@ -15,18 +15,18 @@
         <table class="table table-striped">
             <tr>
                 <th>ID</th>
-                <th>Author</th>
+                <th>Autor</th>
                 <th>Titel</th>
                 <th>Preis</th>
                 <th colspan="2"><br></th>
             </tr>
             @foreach($data as $item)
                 <tr>
-                    <td>{{$item->id}}</td>
+                    <td>{{ $item->id }}</td>
                     <td>{{ $item->author->name }}</td>
-                    <td><a href="{{ route('movies.show', ['movie' => $item->id]) }}">
+                    <td><a class="link" href="{{ route('movies.show', ['movie' => $item->id]) }}">
                             {{ $item->title }}</a></td>
-                    <td>{{ $item->price}} €</td>
+                    <td>{{ $item->price }} €</td>
                     <td><a role="button" class="btn-sm btn-primary"
                            href="{{ route('movies.edit', ['movie' => $item->id]) }}"><i class="fas fa-edit"></i>Edit</a></td>
                     <td><a role="button" class="btn-sm btn-danger"

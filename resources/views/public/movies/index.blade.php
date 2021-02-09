@@ -16,7 +16,7 @@
             <table class="table table-striped">
                 <tr>
                     <th>ID</th>
-                    <th>Author</th>
+                    <th>Autor</th>
                     <th>Titel</th>
                     <th>Preis</th>
                 </tr>
@@ -25,9 +25,10 @@
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->author->name }}</td>
-                        <td><a href="{{ route('movies.show', ['movie' => $item->id]) }}">
-                                {{ $item->title }}</a></td>
-                        <td>{{ $item->price}} €</td>
+                        <td>
+                            <a href="{{ route('movies.show', ['movie' => $item->id]) }}">{{ $item->title }}</a>
+                        </td>
+                        <td>{{ $item->price }} €</td>
                     </tr>
                 @endforeach
             </table>

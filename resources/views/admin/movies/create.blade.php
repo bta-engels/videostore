@@ -4,6 +4,9 @@
 
 @section('content')
     <x-form :action="route('authors.store')">
+
+        <x-form-select name="Autor" :options="$authors" />
+
         <x-form-input name="firstname" label="Vorname" />
         <x-form-input name="lastname" label="Nachname" />
         <x-form-submit>

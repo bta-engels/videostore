@@ -22,7 +22,7 @@
                 <tr>
                     <td>{{$item->id}}</td>
                     <td><a class="link" href="{{ route('authors.show', ['author' => $item->id]) }}">
-                            {{$item->name}} </a></td>
+                            {{ $item->name }}</a></td>
                     <td><a role="button" class="btn-sm btn-primary"
                            href="{{ route('authors.edit', ['author' => $item->id]) }}"><i class="fas fa-edit"></i>Edit</a></td>
                     <td><a role="button" class="btn-sm btn-danger"

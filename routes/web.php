@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\MovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +48,22 @@ Route::fallback(function() {
     // compact-Funktion: statt array Variablennamen als String benutzen
     return view('errors.message', compact('message'));
 });
+
+
+// MOVIE-ROUTEN
+Route::group([
+    'middleware' => 'auth',
+    'prefix'    => 'movies',
+], function() {
+    Route::get('create', [MovieController::class, 'create'])->name('movies.create');
+    Route::get('edit/{movie}', [MovieController::class, 'edit'])->name('movies.edit');
+    Route::post('store', [MovieController::class, 'store'])->name('movies.store');
+    Route::post('update/{movie}', [MovieController::class, 'update'])->name('movies.update');
+    Route::get('destroy/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
+});
+// Route zur Klasse MovieController
+Route::get('movies', [MovieController::class, 'index'])->name('movies');
+
+// Route zur Einzelansicht
+Route::get('movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
+

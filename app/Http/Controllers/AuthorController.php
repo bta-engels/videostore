@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AuthorRequest;
 use App\Models\Author;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AuthorRequest;
 
 class AuthorController extends Controller
 {

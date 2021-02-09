@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+
         View::share('globalName', 'Das ist allgemein in allen Views verfügbar');
         View::share('eva', 'Yipi');
 

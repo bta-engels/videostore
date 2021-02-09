@@ -16,7 +16,7 @@ Auth::routes();
 
 // startseite
 Route::get('/', function() {
-    return view('start', );
+    return view('start' );
 });
 
 Route::group([

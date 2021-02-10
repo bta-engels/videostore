@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\UploadedFile;
 
 /**
  * Class MovieRequest
@@ -23,6 +24,7 @@ class MovieRequest extends FormRequest
 
     protected function prepareForValidation()
     {
+        $this->price = str_replace(',','.', $this->price);
     }
 
     /**

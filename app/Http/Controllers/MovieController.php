@@ -9,8 +9,15 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class MovieController
+ * @package App\Http\Controllers
+ */
 class MovieController extends Controller
 {
+    /**
+     * @var mixed
+     */
     protected $authors;
 
     /**
@@ -77,12 +84,12 @@ class MovieController extends Controller
     {
         // File-Upload über Input-Feld 'image'
         // und Speichern im Ordner storage/app/public/images
+        $validated = $request->validated();
+        // file upload image
         if ($request->hasFile('image')) {
-            $request->image->store('public/images');
+            $validated = $this->handleUpload('image', $request);
         }
-
-
-        Movie::create($request->validated());
+        Movie::create($validated);
         return redirect()->route('movies');
     }
 
@@ -109,7 +116,12 @@ class MovieController extends Controller
      */
     public function update(MovieRequest $request, Movie $movie)
     {
-        $movie->update($request->validated());
+        $validated = $request->validated();
+        // file upload image
+        if ($request->hasFile('image')) {
+            $validated = $this->handleUpload('image', $request);
+        }
+        $movie->update($validated);
         return redirect()->route('movies');
     }
 
@@ -122,5 +134,25 @@ class MovieController extends Controller
     public function destroy(Movie $movie)
     {
         //
+    }
+
+    /**
+     * handle file upload and get hashName of uploaded file
+     * @param string $inputName
+     * @param MovieRequest $request
+     * @param string $path
+     * @return array
+     */
+    protected function handleUpload(string $inputName, MovieRequest $request, string $path = 'public/images'): array {
+        // speicher validierte daten in $validated
+        $validated  = $request->validated();
+        // gib mir den hash namen der upload-datei
+        $hashName   = $request->$inputName->hashName();
+        // lade die datei hoch und speicher sie in $path mit dem namen $hashName
+        $request->$inputName->storeAs($path, $hashName);
+        // überschreibe mein $validated array-element mit dem key $inputName mit meinem hash-name
+        $validated[$inputName] = $hashName;
+
+        return $validated;
     }
 }

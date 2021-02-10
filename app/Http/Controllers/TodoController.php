@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TodoRequest;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -34,7 +35,7 @@ class TodoController extends Controller
      */
     public function show(Todo $todo)
     {
-        //
+        return view('public.todos.show', compact('todo'));
     }
 
     /**
@@ -44,7 +45,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.todos.create');
     }
 
     /**
@@ -53,9 +54,10 @@ class TodoController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
-        //
+        Todo::create($request->validated());
+        return redirect()->route('todos');
     }
 
     /**
@@ -66,7 +68,7 @@ class TodoController extends Controller
      */
     public function edit(Todo $todo)
     {
-        //
+        return view('admin.todos.edit', compact('todo'));
     }
 
     /**
@@ -76,9 +78,10 @@ class TodoController extends Controller
      * @param Todo $todo
      * @return Response
      */
-    public function update(Request $request, Todo $todo)
+    public function update(TodoRequest $request, Todo $todo)
     {
-        //
+        $todo->update($request->validated());
+        return redirect()->route('todos');
     }
 
     /**
@@ -89,6 +92,7 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
+        return redirect()->route('todos');
     }
 }

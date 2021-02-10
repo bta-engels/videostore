@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
-@section('title','Autoren')
-@section('header','Autoren')
+@section('title','Todos')
+@section('header','Todos')
 
 @section('content')
     <div>
@@ -16,14 +16,20 @@
             <table class="table table-striped">
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
+                    <th>Done</th>
+                    <th>Text</th>
+                    <th>Erstellt</th>
+                    <th>Bearbeited</th>
                 </tr>
                 <!-- table data -->
                 @foreach($data as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
-                        <td><a href="{{ route('authors.show', ['author' => $item->id]) }}">
-                                {{ $item->name }}</a></td>
+                        <td><i class="fas fa-{{ $item->done ? 'check' : 'times' }}"></i></td>
+                        <td><a href="{{ route('todos.show', ['todo' => $item->id]) }}">
+                                {{ $item->text }}</a></td>
+                        <td>{{ $item->created_at->format('d.m.Y H:i') }}</td>
+                        <td>{{ $item->updated_at->format('d.m.Y H:i') }}</td>
                     </tr>
                 @endforeach
             </table>

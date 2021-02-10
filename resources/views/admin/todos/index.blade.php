@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="m-0">
-        <a role="button" class="btn btn-primary" href="{{ route('authors.create') }}">
+        <a role="button" class="btn btn-primary" href="{{ route('todos.create') }}">
             <i class="fas fa-plus-square"></i>Create new Todo</a>
     </div>
     <div class="mt-3">

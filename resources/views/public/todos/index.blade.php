@@ -19,16 +19,15 @@
                     <th>Done</th>
                     <th>Text</th>
                     <th>Erstellt</th>
-                    <th>Bearbeitet</th>
+                    <th>Bearbeited</th>
                 </tr>
                 <!-- table data -->
                 @foreach($data as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
-                        <td><i class="fas fa-{{ $item->done ? 'check' : 'times'}}"></i></td>
-                        <td>
-                            <a href="{{ route('todos.show', ['todo' => $item->id]) }}">{{ $item->text }}</a>
-                        </td>
+                        <td><i class="fas fa-{{ $item->done ? 'check' : 'times' }}"></i></td>
+                        <td><a href="{{ route('todos.show', ['todo' => $item->id]) }}">
+                                {{ $item->text }}</a></td>
                         <td>{{ $item->created_at->format('d.m.Y H:i') }}</td>
                         <td>{{ $item->updated_at->format('d.m.Y H:i') }}</td>
                     </tr>

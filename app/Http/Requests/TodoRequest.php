@@ -21,8 +21,17 @@ class TodoRequest extends FormRequest
         return Auth::check();
     }
 
+    /**
+     * wird vor der validierung ausgeführt
+     * dient zur vorbereitenden preparierung der daten
+     * @return array
+     */
     public function validationData()
     {
+        // setze das checkbox-feld 'done' initial auf false,
+        // damit es per request immer present ist
+        // d.h: auch bei nicht angeklickter checkbox (wird dann normalerweise per POST NICHT
+        // als array-element gesendet)
         return array_merge(['done' => false], $this->all());
     }
 
@@ -35,7 +44,7 @@ class TodoRequest extends FormRequest
     {
         return [
             // Alles Plichtfelder und mindestens 3 Zeichen lang
-            'text' => 'required|min:3|max:50',
+            'text'  => 'required|min:3|max:50',
             'done'  => '',
         ];
     }
@@ -47,7 +56,7 @@ class TodoRequest extends FormRequest
     public function messages()
     {
         return [
-            'text.required'    => 'Bitte einen Text angeben',
+            'text.required'    => 'Bitte einen Text eingeben',
             'text.min'         => 'Der Text muß mindesten :min Zeichen enthalten',
             'text.max'         => 'Der Text darf maximal :max Zeichen enthalten',
         ];

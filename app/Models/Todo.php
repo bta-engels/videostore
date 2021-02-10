@@ -31,5 +31,5 @@ class Todo extends Model
     use HasFactory;
 
 	protected $table = 'todos';
-	protected $fillable = ['done', 'text'];
+	protected $fillable = ['done','text'];
 }

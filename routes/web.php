@@ -3,7 +3,6 @@
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\TodoController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes

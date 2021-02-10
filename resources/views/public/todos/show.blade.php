@@ -1,10 +1,10 @@
 @extends('layouts.default')
 
 @section('title','Todo')
-@section('header',$todo->text)
+@section('header','Todo')
 
 @section('content')
     <div class="align-content-center">
-        <h6>Done : <i class="fas fa-{{ $todo->done ? 'check' : 'times'}}"></i></h6>
+        <h5><i class="mr-3 fas fa-{{ $todo->done ? 'check' : 'times' }}"></i>{{ $todo->text }}</h5>
     </div>
 @endsection

@@ -119,6 +119,7 @@ class MovieController extends Controller
         $validated = $request->validated();
         // file upload image
         if ($request->hasFile('image')) {
+            // Aufruf der handleUpload-Funktion, um Bildnamen (hash name) in DB speichern zun können
             $validated = $this->handleUpload('image', $request);
         }
         $movie->update($validated);
@@ -142,9 +143,11 @@ class MovieController extends Controller
      * @param MovieRequest $request
      * @param string $path
      * @return array
+     * Ausgabe des hashname (unique kryptische Namen) benötigt zum Eintragen in die DB
+     * $inputName entspricht dem image, path als Argument übergeben (Speicherort), hashName gibt Dateinamen aus
      */
     protected function handleUpload(string $inputName, MovieRequest $request, string $path = 'public/images'): array {
-        // speicher validierte daten in $validated
+        // speichere validierte daten in eigener Variable $validated (= assoz. Array mit Daten entspr. 4 Spalten)
         $validated  = $request->validated();
         // gib mir den hash namen der upload-datei
         $hashName   = $request->$inputName->hashName();

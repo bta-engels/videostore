@@ -3,7 +3,7 @@
 @section('header','Create Movie')
 
 @section('content')
-{{--    enctype-Attribut lässt zu, dass zusätzlivhe Dateien geladen werden--}}
+{{--    enctype-Attribut lässt zu, dass zusätzliche Dateien geladen werden--}}
     <x-form :action="route('movies.store')" enctype="multipart/form-data">
 {{--        Lege ein drop-down-Menü mit $authors als Optionen an--}}
         <x-form-select name="author_id" :options="$authors" />

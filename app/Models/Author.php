@@ -40,4 +40,9 @@ class Author extends Model
     {
         return $this->firstname . ' ' . $this->lastname;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

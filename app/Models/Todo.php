@@ -31,4 +31,7 @@ class Todo extends Model
     use HasFactory;
 
 	protected $table = 'todos';
+	protected $fillable = ['done','text'];
+	// default werte setzen
+	protected $attributes = ['done' => false];
 }

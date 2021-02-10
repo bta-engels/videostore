@@ -1,14 +1,16 @@
 @extends('layouts.default')
-@section('title','Edit Author')
-@section('header','Edit Author')
+@section('title','Edit Film')
+@section('header','Edit Film')
 
 @section('content')
-    <x-form :action="route('authors.update', ['author' => $author->id])">
-    @bind($author)
-        <x-form-input name="firstname" label="Vorname" />
-        <x-form-input name="lastname" label="Nachname" />
+    <x-form :action="route('movies.update', ['movie' => $movie->id])">
+    @bind($movie)
+        <x-form-select name="author_id" :options="$authors" />
+        <x-form-input name="title" label="Titel" />
+        <x-form-input name="price" label="Preis" />
+        <x-form-input name="image" label="Bild" type="file" />
         <x-form-submit>
-            <span>Autor speichern</span>
+            <span>Film speichern</span>
         </x-form-submit>
     @endbind
     </x-form>

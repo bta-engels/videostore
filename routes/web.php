@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\TodoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,24 @@ Route::get('movies', [MovieController::class, 'index'])->name('movies');
 
 // Route zur Einzelansicht
 Route::get('movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
+
+
+// TODO ROUTEN
+Route::group([
+    'middleware' => 'auth',
+    'prefix'    => 'TODOS',
+], function() {
+    Route::get('create', [TodoController::class, 'create'])->name('todos.create');
+    Route::get('edit/todo}', [TodoController::class, 'edit'])->name('todos.edit');
+    Route::post('store', [TodoController::class, 'store'])->name('todos.store');
+    Route::post('update/todo}', [TodoController::class, 'update'])->name('todos.update');
+    Route::get('destroy/todo}', [TodoController::class, 'destroy'])->name('todos.destroy');
+});
+// Route zur Klasse MovieController
+Route::get('todos', [TodoController::class, 'index'])->name('todos');
+
+// Route zur Einzelansicht
+Route::get('todos/{todo}', [TodoController::class, 'show'])->name('todos.show');
 
 
 // wenn eine route aufgerufen wird, die nicht definiert wurde

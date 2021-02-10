@@ -22,11 +22,16 @@ class MovieRequest extends FormRequest
         return Auth::check();
     }
 
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
     protected function prepareForValidation()
     {
         $this->merge([
             'price' => str_replace(',','.', $this->price),
-            ]);
+        ]);
     }
 
     /**

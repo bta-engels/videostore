@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
@@ -14,16 +16,23 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        $data = Todo::paginate(10);
+        if(Auth::check()) {
+            return view('admin.todos.index', compact('data'));
+        }
+        // oder nicht
+        else {
+            return view('public.todos.index', compact('data'));
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Todo $todo
      * @return Response
      */
-    public function show($id)
+    public function show(Todo $todo)
     {
         //
     }
@@ -52,10 +61,10 @@ class TodoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Todo $todo
      * @return Response
      */
-    public function edit($id)
+    public function edit(Todo $todo)
     {
         //
     }
@@ -64,10 +73,10 @@ class TodoController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param Todo $todo
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Todo $todo)
     {
         //
     }
@@ -75,10 +84,10 @@ class TodoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Todo $todo
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Todo $todo)
     {
         //
     }

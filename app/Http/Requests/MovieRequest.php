@@ -39,7 +39,7 @@ class MovieRequest extends FormRequest
             'author_id' => 'required',
             'title'     => 'required|min:3',
             'price'     => 'required',
-            'image'     => '',
+            'image'     => 'nullable|image',
         ];
     }
 

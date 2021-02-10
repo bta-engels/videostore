@@ -32,6 +32,4 @@ class Todo extends Model
 
 	protected $table = 'todos';
 	protected $fillable = ['done', 'text'];
-	// default werte setzen
-    protected $attributes = ['done' => false];
 }

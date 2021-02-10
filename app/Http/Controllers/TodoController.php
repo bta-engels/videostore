@@ -6,6 +6,7 @@ use App\Models\Todo;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\TodoRequest;
 
 class TodoController extends Controller
 {
@@ -16,7 +17,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $data = Todo::paginate(10);
+        $data = Todo::paginate(5);
         if(Auth::check()) {
             return view('admin.todos.index', compact('data'));
         }
@@ -77,9 +78,11 @@ class TodoController extends Controller
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Todo $todo)
+    public function update(TodoRequest $request, Todo $todo)
     {
-        //
+        $validated = $request->validated();
+        $todo->update($validated);
+        return redirect()->route('todos');
     }
 
     /**
@@ -90,6 +93,7 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
+        return redirect()->route('todos');
     }
 }

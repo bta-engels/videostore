@@ -21,6 +21,11 @@ class TodoRequest extends FormRequest
         return Auth::check();
     }
 
+    public function validationData()
+    {
+        return array_merge(['done' => false], $this->all());
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -30,7 +35,7 @@ class TodoRequest extends FormRequest
     {
         return [
             // Alles Plichtfelder und mindestens 3 Zeichen lang
-            'text' => 'required|min:3|mmax:50',
+            'text' => 'required|min:3|max:50',
             'done'  => '',
         ];
     }

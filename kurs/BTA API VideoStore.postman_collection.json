@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "5c6e08a7-9e85-4f63-9a30-e4641c90cfe9",
-		"name": "API VideoStore-Doz",
+		"_postman_id": "f8605438-d515-4a6b-adb6-e7347433adbf",
+		"name": "BTA API VideoStore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -193,6 +193,5 @@
 			},
 			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

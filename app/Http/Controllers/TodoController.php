@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TodoRequest;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\TodoRequest;
 
 
 class TodoController extends Controller
@@ -22,8 +22,9 @@ class TodoController extends Controller
         if(Auth::check()) {
             return view('admin.todos.index', compact('data'));
         }
+        // oder nicht
         else {
-            return view('public.todos.index', compact('data', ));
+            return view('public.todos.index', compact('data'));
         }
     }
 

@@ -1,11 +1,12 @@
 @extends('layouts.default')
-@section('title','Todo anlegen')
-@section('header','Todo anlegen')
+@section('title','Create Todo')
+@section('header','Create Todo')
 
 @section('content')
     <x-form :action="route('todos.store')">
-        <x-form-input name="text" label="Beschreibung" />
-        <x-form-input name="done" label="Status" />
+        <x-form-input name="text" label="Text" />
+        <x-form-checkbox name="done" label="Erledigt" />
+        <br/>
         <x-form-submit>
             <span>Todo anlegen</span>
         </x-form-submit>

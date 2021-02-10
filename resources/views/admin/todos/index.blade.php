@@ -23,14 +23,14 @@
             </tr>
             @foreach($data as $item)
                 <tr>
-                    <td>{{$item->id}}</td>
+                    <td>{{ $item->id }}</td>
                     <td><i class="fas fa-{{ $item->done ? 'check' : 'times' }}"></i></td>
                     <td><a href="{{ route('todos.show', ['todo' => $item->id]) }}">
-                        {{ $item->text }}</a></td>
-                    <td>{{ $item->created_at->format('d.m.Y H:i')}}</td>
-                    <td>{{ $item->updated_at->format('d.m.Y H:i')}}</td>
+                            {{ $item->text }}</a></td>
+                    <td>{{ $item->created_at->format('d.m.Y H:i') }}</td>
+                    <td>{{ $item->updated_at->format('d.m.Y H:i') }}</td>
                     <td><a role="button" class="btn-sm btn-primary"
-                    href="{{ route('todos.edit', ['todo' => $item->id]) }}"><i class="fas fa edit"></i>Bearbeiten</a></td>
+                           href="{{ route('todos.edit', ['todo' => $item->id]) }}"><i class="fas fa-edit"></i>Edit</a></td>
                     <td><a role="button" class="btn-sm btn-danger"
                            onclick="return confirm('Datensatz wirklich löschen?')"
                            href="{{ route('todos.destroy', ['todo' => $item->id]) }}"><i class="fas fa-trash-alt"></i>Löschen</a></td>

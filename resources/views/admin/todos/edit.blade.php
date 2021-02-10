@@ -1,13 +1,13 @@
 @extends('layouts.default')
-@section('title','Todo bearbeiten')
-@section('header','Todo bearbeiten')
+@section('title','Edit Todo')
+@section('header','Edit Todo')
 
 @section('content')
     <x-form :action="route('todos.update', ['todo' => $todo->id])">
     @bind($todo)
-        <x-form-input name="text" label="Beschreibung"/>
-        <x-form-checkbox name="done" label="erledigt"/>
-        <br>
+        <x-form-input name="text" label="Text" />
+        <x-form-checkbox name="done" label="Erledigt" />
+        <br/>
         <x-form-submit>
             <span>Todo speichern</span>
         </x-form-submit>

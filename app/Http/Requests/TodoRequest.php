@@ -32,6 +32,23 @@ class TodoRequest extends FormRequest
     }
 
 
+        return Auth::check();
+    }
+
+    /**
+     * wird vor der validierung ausgeführt
+     * dient zur vorbereitenden preparierung der daten
+     * @return array
+     */
+    public function validationData()
+    {
+        // setze das checkbox-feld 'done' initial auf false,
+        // damit es per request immer present ist
+        // d.h: auch bei nicht angeklickter checkbox (wird dann normalerweise per POST NICHT
+        // als array-element gesendet)
+        return array_merge(['done' => false], $this->all());
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -59,4 +76,6 @@ class TodoRequest extends FormRequest
             'text.max'         => 'Der Text darf maximal :max Zeichen enthalten',
         ];
     }
+
+
 }

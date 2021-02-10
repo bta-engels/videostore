@@ -51,13 +51,13 @@ Route::group([
     'prefix'    => 'todos',
 ], function() {
     Route::get('create', [TodoController::class, 'create'])->name('todos.create');
-    Route::get('edit/{movie}', [TodoController::class, 'edit'])->name('todos.edit');
+    Route::get('edit/{todo}', [TodoController::class, 'edit'])->name('todos.edit');
     Route::post('store', [TodoController::class, 'store'])->name('todos.store');
-    Route::post('update/{movie}', [TodoController::class, 'update'])->name('todos.update');
-    Route::get('destroy/{movie}', [TodoController::class, 'destroy'])->name('todos.destroy');
+    Route::post('update/{todo}', [TodoController::class, 'update'])->name('todos.update');
+    Route::get('destroy/{todo}', [TodoController::class, 'destroy'])->name('todos.destroy');
 });
 Route::get('todos', [TodoController::class, 'index'])->name('todos');
-Route::get('todos/{movie}', [TodoController::class, 'show'])->name('todos.show');
+Route::get('todos/{todo}', [TodoController::class, 'show'])->name('todos.show');
 
 // wenn eine route aufgerufen wird, die nicht definiert wurde
 Route::fallback(function() {

@@ -1,13 +1,13 @@
 @extends('layouts.default')
-@section('title','Create Author')
-@section('header','Create Author')
+@section('title','Todo anlegen')
+@section('header','Todo anlegen')
 
 @section('content')
-    <x-form :action="route('authors.store')">
-        <x-form-input name="firstname" label="Vorname" />
-        <x-form-input name="lastname" label="Nachname" />
+    <x-form :action="route('todos.store')">
+        <x-form-input name="text" label="Beschreibung" />
+        <x-form-input name="done" label="Status" />
         <x-form-submit>
-            <span>Autor anlegen</span>
+            <span>Todo anlegen</span>
         </x-form-submit>
     </x-form>
 @endsection

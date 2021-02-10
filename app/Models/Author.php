@@ -47,4 +47,11 @@ class Author extends Model
         return $this->firstname . ' ' . $this->lastname;
     }
 
+    // Ausgabe bei Aufruf der Klasse ohne Funktion
+    public function __toString()
+    {
+        return 'Mein Autor: ' . $this->name;
+    }
+
+
 }

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
  * Class AuthorRequest
  * @package App\Http\Requests
  */
-class AuthorRequest extends FormRequest
+class TodoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,6 +21,16 @@ class AuthorRequest extends FormRequest
         // Gib Zustand der Auth-Funktion zurück (s. AuthorController)
         return Auth::check();
     }
+
+    // Funktion zum Präparieren der eingegebenen Daten für DB
+    // zur Kompensation des checkbox-Verhaltens
+    public function validationData()
+    {
+        // array_merge mischt die arrays -> falls checkbox angeclickt=> array-Element existiert
+        // und überschreibt das default false
+        return array_merge(['done' => false], $this->all());
+    }
+
 
     /**
      * Get the validation rules that apply to the request.

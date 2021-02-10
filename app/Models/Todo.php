@@ -33,5 +33,5 @@ class Todo extends Model
 	protected $table = 'todos';
 	protected $fillable = ['done', 'text'];
 	// $attributes-Variabe zur Definition von Standardwerten
-	protected $attributes = ['done' => false];
+//	protected $attributes = ['done' => false];
 }

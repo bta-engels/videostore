@@ -1,22 +1,13 @@
 @extends('layouts.default')
 
-@section('title','Autor')
-@section('header','Autor')
+@section('title','Todo')
+@section('header', $todo->text)
 
 @section('content')
     <div class="align-content-center">
-        <h5>{{ $author->id }} {{ $author->firstname }} {{ $author->lastname }}</h5>
-        <h6>Anzahl Filme: {{ $author->movies->count() }}</h6>
-        <div>
-            <!-- gib alle movie titel aus -->
-            <h5>Filme</h5>
-            <ul class="list-group-flush">
-                @forelse ($author->movies as $movie)
-                    <li class="list-group-item">{{ $movie->title }}</li>
-                @empty
-                    <p>Keine Filme vorhanden</p>
-                @endforelse
-            </ul>
-        </div>
+        <h5>ID: {{ $todo->id }}</h5>
+        <h6>Status: <i class="fas fa-{{ $todo->done ? 'check' : 'times' }}"></i></h6>
+        <h6>Angelegt: {{ $todo->created_at->format('d.m.Y H:i')}}</h6>
+        <h6>Bearbeitet: {{ $todo->updated_at->format('d.m.Y H:i')}}</h6>
     </div>
 @endsection

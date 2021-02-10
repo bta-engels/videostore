@@ -1,12 +1,12 @@
 @extends('layouts.default')
 
-@section('title','Autoren')
-@section('header','Autoren')
+@section('title','Todos')
+@section('header','Todos')
 
 @section('content')
     <div class="m-0">
-        <a role="button" class="btn btn-primary" href="{{ route('authors.create') }}">
-            <i class="fas fa-plus-square"></i>Create new Author</a>
+        <a role="button" class="btn btn-primary" href="{{ route('todos.create') }}">
+            <i class="fas fa-plus-square"></i>Neues Todo anlegen</a>
     </div>
     <div class="mt-3">
 
@@ -15,19 +15,25 @@
         <table class="table table-striped">
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>Status</th>
+                <th>Beschreibung</th>
+                <th>Erstellt</th>
+                <th>Bearbeitet</th>
                 <th colspan="2"><br></th>
             </tr>
             @foreach($data as $item)
                 <tr>
                     <td>{{$item->id}}</td>
-                    <td><a class="link" href="{{ route('authors.show', ['author' => $item->id]) }}">
-                            {{ $item->name }}</a></td>
+                    <td><i class="fas fa-{{ $item->done ? 'check' : 'times' }}"></i></td>
+                    <td><a href="{{ route('todos.show', ['todo' => $item->id]) }}">
+                        {{ $item->text }}</a></td>
+                    <td>{{ $item->created_at->format('d.m.Y H:i')}}</td>
+                    <td>{{ $item->updated_at->format('d.m.Y H:i')}}</td>
                     <td><a role="button" class="btn-sm btn-primary"
-                           href="{{ route('authors.edit', ['author' => $item->id]) }}"><i class="fas fa-edit"></i>Edit</a></td>
+                    href="{{ route('todos.edit', ['todo' => $item->id]) }}"><i class="fas fa edit"></i>Bearbeiten</a></td>
                     <td><a role="button" class="btn-sm btn-danger"
                            onclick="return confirm('Datensatz wirklich löschen?')"
-                           href="{{ route('authors.destroy', ['author' => $item->id]) }}"><i class="fas fa-trash-alt"></i>Löschen</a></td>
+                           href="{{ route('todos.destroy', ['todo' => $item->id]) }}"><i class="fas fa-trash-alt"></i>Löschen</a></td>
                 </tr>
             @endforeach
         </table>

@@ -22,22 +22,9 @@ class TodoRequest extends FormRequest
         return Auth::check();
     }
 
-    // Funktion zum Präparieren der eingegebenen Daten für DB
-    // zur Kompensation des checkbox-Verhaltens
-    public function validationData()
-    {
-        // array_merge mischt die arrays -> falls checkbox angeclickt=> array-Element existiert
-        // und überschreibt das default false
-        return array_merge(['done' => false], $this->all());
-    }
-
-
-        return Auth::check();
-    }
-
     /**
      * wird vor der validierung ausgeführt
-     * dient zur vorbereitenden preparierung der daten
+     * dient zur vorbereitenden preparierung der daten für DB
      * @return array
      */
     public function validationData()

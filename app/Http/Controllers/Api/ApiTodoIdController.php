@@ -74,7 +74,7 @@ class ApiTodoIdController extends Controller
         } // alles ok
         else {
             $todo = Todo::find($id);
-            if($todo){
+            if($todo) {
                 $todo->update($request->validated());
                 $todo = new TodoResource($todo);
             } else {
@@ -94,14 +94,16 @@ class ApiTodoIdController extends Controller
     public function destroy($id)
     {
         $todo = Todo::find($id);
-
-        if($todo){
+        if($todo) {
             $todo->delete();
             $todo = new TodoResource($todo);
         } else {
             $todo = ['error' => 'not found'];
         }
-
         return response()->json($todo);
+    }
+
+    public function error(){
+        return response()->json(['error' => 'route not found']);
     }
 }

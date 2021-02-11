@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Todo;
+use App\Http\Requests\TodoRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
-class ApiController extends Controller
+class ApiTodoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +18,8 @@ class ApiController extends Controller
      */
     public function index()
     {
-        //
+        $data = Todo::all();
+        return response()->json($data);
     }
 
     /**
@@ -37,9 +41,20 @@ class ApiController extends Controller
      */
     public function show(Todo $todo)
     {
-        //
+        return response()->json($todo);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function store(TodoRequest $request)
+    {
+        $data = Todo::create($request->validated());
+    }
+    
     /**
      * Update the specified resource in storage.
      *
@@ -47,9 +62,9 @@ class ApiController extends Controller
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Todo $todo)
+    public function update(TodoRequest $request, Todo $todo)
     {
-        //
+        $todo->update($request->validated());
     }
 
     /**
@@ -60,6 +75,6 @@ class ApiController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
     }
 }

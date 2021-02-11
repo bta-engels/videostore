@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\ApiTodoController;
 use App\Http\Controllers\Api\ApiTodoIdController;
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group([
-    'prefix'    => 'todos',
+    'prefix' => 'todos',
 ], function() {
     Route::get('', [ApiTodoIdController::class, 'index']);
-    Route::get('{id}', [ApiTodoIdController::class, 'show']);
     Route::post('', [ApiTodoIdController::class, 'store']);
+    Route::get('{id}', [ApiTodoIdController::class, 'show']);
     Route::put('{id}', [ApiTodoIdController::class, 'update']);
     Route::delete('{id}', [ApiTodoIdController::class, 'destroy']);
 });

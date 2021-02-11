@@ -13,6 +13,7 @@ use App\Http\Controllers\TodoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Auth::routes();
 
 // startseite
@@ -64,3 +65,4 @@ Route::fallback(function() {
     $message = 'Diese Route gibt\'s nicht bei mir!';
     return view('errors.message', compact('message'));
 });
+

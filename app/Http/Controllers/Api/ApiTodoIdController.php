@@ -93,8 +93,12 @@ class ApiTodoIdController extends Controller
     {
         $todo = Todo::find($id);
 
-        $todo->delete();
-        $todo = new TodoResource($todo);
+        if($todo){
+            $todo->delete();
+            $todo = new TodoResource($todo);
+        } else {
+            $todo = ['error' => 'not found'];
+        }
 
         return response()->json($todo);
     }

@@ -26,3 +26,4 @@ Route::group([
     Route::put('{id}', [ApiTodoIdController::class, 'update']);
     Route::delete('{id}', [ApiTodoIdController::class, 'destroy']);
 });
+Route::fallback([ApiTodoIdController::class,'error']);

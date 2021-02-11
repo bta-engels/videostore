@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Resources\TodoResource;
 use App\Models\Todo;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApiTodoRequest;
+use App\Http\Resources\TodoResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use function PHPUnit\Framework\throwException;
 
-class ApiTodoController extends Controller
+class ApiTodoIdController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,12 +28,21 @@ class ApiTodoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Todo $todo
+     * @param  int  $id
      * @return Response
      */
-    public function show(Todo $todo)
+    public function show($id)
     {
-        $todo = new TodoResource($todo);
+        $todo = Todo::find($id);
+        // prüfe ob Datensatz gefunden wurde
+        if($todo) {
+            $todo = new TodoResource($todo);
+        }
+        // wenn nicht dann array mit fehlermeldung ausgeben
+        else {
+            $todo = ['error' => 'not found'];
+        }
+
         return response()->json($todo);
     }
 
@@ -53,32 +63,39 @@ class ApiTodoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  Request  $request
-     * @param Todo $todo
+     * @param  int  $id
      * @return Response
      */
-    public function update(ApiTodoRequest $request, Todo $todo)
+    public function update(ApiTodoRequest $request, $id)
     {
         // validierung läuft schief
         if($request->validator && $request->validator->fails()) {
             $todo = ['error' => $request->validator->errors()];
         } // alles ok
         else {
+            $todo = Todo::find($id);
+
             $todo->update($request->validated());
             $todo = new TodoResource($todo);
+
         }
+
         return response()->json($todo);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Todo $todo
+     * @param  int  $id
      * @return Response
      */
-    public function destroy(Todo $todo)
+    public function destroy($id)
     {
+        $todo = Todo::find($id);
+
         $todo->delete();
         $todo = new TodoResource($todo);
+
         return response()->json($todo);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Resources\TodoResourse;
+use App\Http\Resources\TodoResource;
 use App\Models\Todo;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApiTodoRequest;
@@ -20,7 +20,7 @@ class ApiTodoController extends Controller
     {
         $data = Todo::all();
         // @todo: add ressoure class here
-        $data = TodoResourse::collection($data);
+        $data = TodoResource::collection($data);
         return response()->json($data);
     }
 
@@ -32,7 +32,7 @@ class ApiTodoController extends Controller
      */
     public function show(Todo $todo)
     {
-        $todo = new TodoResourse($todo);
+        $todo = new TodoResource($todo);
         return response()->json($todo);
     }
 
@@ -45,7 +45,7 @@ class ApiTodoController extends Controller
     public function store(ApiTodoRequest $request)
     {
         $todo = Todo::create($request->validated());
-        $todo = new TodoResourse($todo);
+        $todo = new TodoResource($todo);
         return response()->json($todo);
     }
 
@@ -59,12 +59,12 @@ class ApiTodoController extends Controller
     public function update(ApiTodoRequest $request, Todo $todo)
     {
         // validierung läuft schief
-        if($request->validator && $request->validator->fails()){
+        if($request->validator && $request->validator->fails()) {
             $todo = ['error' => $request->validator->errors()];
         } // alles ok
         else {
             $todo->update($request->validated());
-            $todo = new TodoResourse($todo);
+            $todo = new TodoResource($todo);
         }
         return response()->json($todo);
     }
@@ -78,7 +78,7 @@ class ApiTodoController extends Controller
     public function destroy(Todo $todo)
     {
         $todo->delete();
-        $todo = new TodoResourse($todo);
+        $todo = new TodoResource($todo);
         return response()->json($todo);
     }
 }

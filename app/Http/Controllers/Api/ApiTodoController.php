@@ -3,41 +3,30 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Todo;
-use App\Http\Requests\TodoRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ApiTodoRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 
 class ApiTodoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
         $data = Todo::all();
+        // @todo: add ressoure class here
         return response()->json($data);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Todo  $todo
-     * @return \Illuminate\Http\Response
+     * @param Todo $todo
+     * @return Response
      */
     public function show(Todo $todo)
     {
@@ -47,34 +36,37 @@ class ApiTodoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      */
-    public function store(TodoRequest $request)
+    public function store(ApiTodoRequest $request)
     {
-        $data = Todo::create($request->validated());
+        $todo = Todo::create($request->validated());
+        return response()->json($todo);
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Todo  $todo
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param Todo $todo
+     * @return Response
      */
-    public function update(TodoRequest $request, Todo $todo)
+    public function update(ApiTodoRequest $request, Todo $todo)
     {
         $todo->update($request->validated());
+        return response()->json($todo);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Todo  $todo
-     * @return \Illuminate\Http\Response
+     * @param Todo $todo
+     * @return Response
      */
     public function destroy(Todo $todo)
     {
         $todo->delete();
+        return response()->json($todo);
     }
 }

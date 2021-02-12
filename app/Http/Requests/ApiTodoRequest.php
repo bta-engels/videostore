@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Auth;
  */
 class ApiTodoRequest extends TodoRequest
 {
-
     /**
-     * @var null
+     * @var Validator
      */
     public $validator = null;
+
     /**
      * Determine if the user is authorized to make this request.
      *

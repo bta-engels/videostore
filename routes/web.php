@@ -13,6 +13,7 @@ use App\Http\Controllers\TodoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Auth::routes();
 
 // startseite
@@ -65,3 +66,4 @@ Route::fallback(function() {
     // compact-Funktion: statt array Variablennamen als String benutzen
     return view('errors.message', compact('message'));
 });
+

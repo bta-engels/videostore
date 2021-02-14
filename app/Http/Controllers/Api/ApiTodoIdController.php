@@ -8,7 +8,6 @@ use App\Http\Requests\ApiTodoRequest;
 use App\Http\Resources\TodoResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use function PHPUnit\Framework\throwException;
 
 class ApiTodoIdController extends Controller
 {

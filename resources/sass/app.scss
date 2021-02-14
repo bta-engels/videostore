@@ -19,3 +19,16 @@ i.fas {
 .fa-times {
     color: #c00;
 }
+table {
+    &.routes {
+        tr {
+            td {
+                font-size: 0.7rem;
+                &:first-child {
+                    font-weight: bold;
+                    color:red;
+                }
+            }
+        }
+    }
+}

@@ -6,6 +6,7 @@ use App\Models\Todo;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApiTodoRequest;
 use App\Http\Resources\TodoResource;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

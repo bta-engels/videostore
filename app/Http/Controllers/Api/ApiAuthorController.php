@@ -9,7 +9,7 @@ use App\Http\Resources\AuthorResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class ApiAuthorController extends Controller
+class ApiAuthorController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -34,14 +34,14 @@ class ApiAuthorController extends Controller
         $item = Author::find($id);
         // prüfe ob Datensatz gefunden wurde
         if($item) {
-            $item = new AuthorResource($item);
+            $this->data = new AuthorResource($item);
         }
         // wenn nicht dann array mit fehlermeldung ausgeben
         else {
-            $item = ['error' => 'not found'];
+            $this->error = 'not found';
         }
 
-        return response()->json($item);
+        return $this->getResponse();
     }
 
     /**

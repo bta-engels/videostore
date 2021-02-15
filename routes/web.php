@@ -81,6 +81,12 @@ Route::get('todos', [TodoController::class, 'index'])->name('todos');
 Route::get('todos/{todo}', [TodoController::class, 'show'])->name('todos.show');
 
 
+Route::get('routes', [RoutesController::class, 'index'])
+    ->name('routes')
+    ->middleware('auth')
+;
+
+
 // wenn eine route aufgerufen wird, die nicht definiert wurde
 Route::fallback(function() {
     $message = '<h1>Diese Route gibt\'s nicht bei mir!</h1>';

@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
 class Author extends Model
 {
     protected $table = 'authors';
+//    Definiere eigenes Attribut "name" mittels appends und getNameAttribute-Funktion (unten)
     protected $fillable = ['firstname', 'lastname'];
     protected $appends = ['name'];
     public $timestamps = false;
@@ -36,6 +37,8 @@ class Author extends Model
         return $this->hasMany(Movie::class);
     }
 
+//    Präfix get, Suffix Attribute,dazwischen in appends definierte Variable (großgeschrieben)
+//    macht appends-Variable verfügbar
     public function getNameAttribute()
     {
         return $this->firstname . ' ' . $this->lastname;

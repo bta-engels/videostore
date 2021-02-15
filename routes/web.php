@@ -83,6 +83,7 @@ Route::get('todos', [TodoController::class, 'index'])->name('todos');
 // Route zur Einzelansicht
 Route::get('todos/{todo}', [TodoController::class, 'show'])->name('todos.show');
 
+// Route zur Übersicht über die verfügbaren Routen
 Route::get('routes', [RoutesController::class, 'index'])
     ->name('routes')
     ->middleware('auth')

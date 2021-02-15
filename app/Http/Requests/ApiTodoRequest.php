@@ -25,6 +25,8 @@ class ApiTodoRequest extends TodoRequest
      */
     public function authorize()
     {
+//        Prüfe, ob User Schreibrechte hat
+//        return request()->user->tokenCan('write');
         return true;
     }
 

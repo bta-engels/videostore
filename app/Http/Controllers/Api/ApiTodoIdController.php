@@ -56,6 +56,12 @@ class ApiTodoIdController extends Controller
      */
     public function store(ApiTodoRequest $request)
     {
+//        Direkte Prüfung, ob user Schreibrechte hat (falls nicht in Routen definiert)
+//        if($request->user()->tokenCan('write')) {
+//            die('ja, kann schreiben');
+//        } else {
+//            die('nein, darf nicht schreiben');
+//        }
         $todo = Todo::create($request->validated());
         $todo = new TodoResource($todo);
         return response()->json($todo);

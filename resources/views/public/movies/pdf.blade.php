@@ -10,6 +10,8 @@
             Preis: {{ $movie->price}}
         </p>
         <br>
-        <img src="{{ asset('/storage/images/' . $movie->image) }}">
+        @if($movie->image)
+            <img src="{{ asset('/storage/images/' . $movie->image) }}">
+        @endif
     </div>
 @endsection

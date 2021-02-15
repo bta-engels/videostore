@@ -22,6 +22,7 @@ class AuthorResource extends JsonResource
             'name'      => $this->name,
 //          map-Funktion: durchlaufe gesamtes movies-Array und gib Titel zurück
             'movies'    => $this->movies->map->title,
+            //            'movies'    => $this->movies ? $this->movies->map->title : null,
         ];
     }
 }

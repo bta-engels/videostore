@@ -41,7 +41,6 @@ class ApiAuthorController extends ApiController
             $this->error = 'not found';
         }
 
-//        return response()->json($item);
         return $this->getResponse();
     }
 
@@ -53,15 +52,13 @@ class ApiAuthorController extends ApiController
      */
     public function store(ApiAuthorRequest $request)
     {
-        // validierung läuft schief
         if($request->validator && $request->validator->fails()) {
-            $$this->error = $request->validator->errors()]
-        } else // alles ok
-        {
+            $this->error = $request->validator->errors();
+        } // alles ok
+        else {
             $item = Author::create($request->validated());
             $this->data = new AuthorResource($item);
         }
-
         return $this->getResponse();
     }
 
@@ -76,7 +73,7 @@ class ApiAuthorController extends ApiController
     {
         // validierung läuft schief
         if($request->validator && $request->validator->fails()) {
-            $$this->error = $request->validator->errors()]
+            $this->error = $request->validator->errors();
         } // alles ok
         else {
             $item = Author::find($id);

@@ -64,6 +64,13 @@ class ApiTodoIdController extends Controller
 //        }
         $todo = Todo::create($request->validated());
         $todo = new TodoResource($todo);
+        if($request->validator && $request->validator->fails()) {
+            $todo = ['errors' => $request->validator->errors()];
+        } // alles ok
+        else {
+            $todo = Todo::create($request->validated());
+            $todo = new TodoResource($todo);
+        }
         return response()->json($todo);
     }
 

@@ -21,12 +21,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 */
+
+// Route zum API-Login für Funktionen, die Authorisierung erfordern
 Route::post('login', [ApiLoginController::class, 'login']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+// Routen zu todos-API
 Route::group([
     'middleware'=> 'auth:sanctum',
     'prefix' => 'todos',
@@ -38,6 +42,7 @@ Route::group([
 Route::get('todos', [ApiTodoIdController::class, 'index']);
 Route::get('todos/{id}', [ApiTodoIdController::class, 'show']);
 
+// Routen zu authors-API
 Route::group([
     'middleware'=> 'auth:sanctum',
     'prefix' => 'authors',
@@ -49,6 +54,8 @@ Route::group([
 Route::get('authors', [ApiAuthorController::class, 'index']);
 Route::get('authors/{id}', [ApiAuthorController::class, 'show']);
 
+
+// Fallback-Route bei nicht existierender Route
 Route::fallback(function () {
     return response()->json(['error' => 'route not found']);
 });

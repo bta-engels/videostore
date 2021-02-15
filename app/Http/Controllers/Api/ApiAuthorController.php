@@ -19,8 +19,8 @@ class ApiAuthorController extends ApiController
     public function index()
     {
         $data = Author::all();
-        $data = AuthorResource::collection($data);
-        return response()->json($data);
+        $this->data = AuthorResource::collection($data);
+        return $this->getResponse();
     }
 
     /**
@@ -52,9 +52,14 @@ class ApiAuthorController extends ApiController
      */
     public function store(ApiAuthorRequest $request)
     {
-        $item = Author::create($request->validated());
-        $item = new AuthorResource($item);
-        return response()->json($item);
+        if($request->validator && $request->validator->fails()) {
+            $this->error = $request->validator->errors();
+        } // alles ok
+        else {
+            $item = Author::create($request->validated());
+            $this->data = new AuthorResource($item);
+        }
+        return $this->getResponse();
     }
 
     /**
@@ -68,19 +73,19 @@ class ApiAuthorController extends ApiController
     {
         // validierung läuft schief
         if($request->validator && $request->validator->fails()) {
-            $item = ['error' => $request->validator->errors()];
+            $this->error = $request->validator->errors();
         } // alles ok
         else {
             $item = Author::find($id);
             if($item) {
                 $item->update($request->validated());
-                $item = new AuthorResource($item);
+                $this->data = new AuthorResource($item);
             } else {
-                $item = ['error' => 'not found'];
+                $this->error = 'not found';
             }
         }
 
-        return response()->json($item);
+        return $this->getResponse();
     }
 
     /**
@@ -94,10 +99,10 @@ class ApiAuthorController extends ApiController
         $item = Author::find($id);
         if($item) {
             $item->delete();
-            $item = new AuthorResource($item);
+            $this->data = new AuthorResource($item);
         } else {
-            $item = ['error' => 'not found'];
+            $this->error = 'not found';
         }
-        return response()->json($item);
+        return $this->getResponse();
     }
 }

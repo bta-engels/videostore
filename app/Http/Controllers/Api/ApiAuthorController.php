@@ -53,8 +53,15 @@ class ApiAuthorController extends ApiController
     public function store(ApiAuthorRequest $request)
     {
         $item = Author::create($request->validated());
-        $item = new AuthorResource($item);
-        return response()->json($item);
+        if($item) {
+            $this->data = new AuthorResource($item);
+        }
+        // wenn nicht dann array mit fehlermeldung ausgeben
+        else {
+            $this->error = 'not found';
+        }
+
+        return $this->getResponse();
     }
 
     /**
@@ -74,13 +81,13 @@ class ApiAuthorController extends ApiController
             $item = Author::find($id);
             if($item) {
                 $item->update($request->validated());
-                $item = new AuthorResource($item);
+                $this->data = new AuthorResource($item);
             } else {
-                $item = ['error' => 'not found'];
+                $this->error = 'not found';
             }
         }
 
-        return response()->json($item);
+        return $this->getResponse();
     }
 
     /**
@@ -92,12 +99,16 @@ class ApiAuthorController extends ApiController
     public function destroy($id)
     {
         $item = Author::find($id);
+
         if($item) {
             $item->delete();
-            $item = new AuthorResource($item);
-        } else {
-            $item = ['error' => 'not found'];
+            $this->data = new AuthorResource($item);
         }
-        return response()->json($item);
+        // wenn nicht dann array mit fehlermeldung ausgeben
+        else {
+            $this->error = 'not found';
+        }
+
+        return $this->getResponse();
     }
 }

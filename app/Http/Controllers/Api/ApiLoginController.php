@@ -31,6 +31,13 @@ class ApiLoginController extends Controller
             ]);
         }
 
-        return $user->createToken($user->email . '-' .uniqid(), ['write'])->plainTextToken;
+        $token = $user->createToken($user->email . '-' .uniqid(), ['write'])->plainTextToken;
+        // json rückgabe: name, email, token
+        $response = [
+            'name'  => $user->name,
+            'email' => $user->email,
+            'token' => $token,
+        ];
+        return response()->json($response);
     }
 }

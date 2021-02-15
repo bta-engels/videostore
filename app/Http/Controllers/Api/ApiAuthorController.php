@@ -34,7 +34,7 @@ class ApiAuthorController extends Controller
         $item = Author::find($id);
         // prüfe ob Datensatz gefunden wurde
         if($item) {
-            $item = new AuthorResource($item);
+            $item->data = new AuthorResource($item);
         }
         // wenn nicht dann array mit fehlermeldung ausgeben
         else {

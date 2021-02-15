@@ -54,6 +54,11 @@ class ApiTodoIdController extends Controller
      */
     public function store(ApiTodoRequest $request)
     {
+        if($request->user()->tokenCan('write')){
+            die('ja, kann schreiben');
+        } else {
+            die('nein, kann nicht schreiben');
+        }
         $todo = Todo::create($request->validated());
         $todo = new TodoResource($todo);
         return response()->json($todo);

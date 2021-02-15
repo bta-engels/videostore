@@ -30,7 +30,9 @@ return [
     */
 
 //    Token ist unendlich gültig
-    'expiration' => null,
+//    'expiration' => null,
+    'expiration' => 1,
+
 
     /*
     |--------------------------------------------------------------------------

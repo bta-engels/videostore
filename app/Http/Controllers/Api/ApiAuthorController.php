@@ -19,8 +19,8 @@ class ApiAuthorController extends ApiController
     public function index()
     {
         $data = Author::all();
-        $data = AuthorResource::collection($data);
-        return response()->json($data);
+        $this->data = AuthorResource::collection($data);
+        return $this->getResponse();
     }
 
     /**
@@ -52,15 +52,13 @@ class ApiAuthorController extends ApiController
      */
     public function store(ApiAuthorRequest $request)
     {
-        $item = Author::create($request->validated());
-        if($item) {
+        if($request->validator && $request->validator->fails()) {
+            $this->error = $request->validator->errors();
+        } // alles ok
+        else {
+            $item = Author::create($request->validated());
             $this->data = new AuthorResource($item);
         }
-        // wenn nicht dann array mit fehlermeldung ausgeben
-        else {
-            $this->error = 'not found';
-        }
-
         return $this->getResponse();
     }
 
@@ -75,7 +73,7 @@ class ApiAuthorController extends ApiController
     {
         // validierung läuft schief
         if($request->validator && $request->validator->fails()) {
-            $item = ['error' => $request->validator->errors()];
+            $this->error = $request->validator->errors();
         } // alles ok
         else {
             $item = Author::find($id);
@@ -99,16 +97,12 @@ class ApiAuthorController extends ApiController
     public function destroy($id)
     {
         $item = Author::find($id);
-
         if($item) {
             $item->delete();
             $this->data = new AuthorResource($item);
-        }
-        // wenn nicht dann array mit fehlermeldung ausgeben
-        else {
+        } else {
             $this->error = 'not found';
         }
-
         return $this->getResponse();
     }
 }

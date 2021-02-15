@@ -118,9 +118,4 @@ class ApiTodoIdController extends Controller
         }
         return response()->json($todo);
     }
-// Aufruf, wenn nicht existierende Route eingegeben wurde
-    public function error() {
-        return response()->json(['error' => 'route not found']);
-
-    }
 }

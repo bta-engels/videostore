@@ -6,9 +6,9 @@ use App\Models\Todo;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApiTodoRequest;
 use App\Http\Resources\TodoResource;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use function PHPUnit\Framework\throwException;
 
 class ApiTodoIdController extends Controller
 {
@@ -101,9 +101,5 @@ class ApiTodoIdController extends Controller
             $todo = ['error' => 'not found'];
         }
         return response()->json($todo);
-    }
-
-    public function error(){
-        return response()->json(['error' => 'route not found']);
     }
 }

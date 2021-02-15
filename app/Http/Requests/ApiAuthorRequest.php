@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
  * Class AuthorRequest
  * @package App\Http\Requests
  */
-class ApiTodoIdRequest extends TodoRequest
+class ApiAuthorRequest extends AuthorRequest
 {
     /**
      * @var Validator
@@ -37,3 +37,4 @@ class ApiTodoIdRequest extends TodoRequest
     }
 
 }
+

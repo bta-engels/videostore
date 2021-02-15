@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiTodoIdController;
+use App\Http\Controllers\Api\ApiAuthorController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,3 +28,14 @@ Route::group([
     Route::delete('{id}', [ApiTodoIdController::class, 'destroy']);
 });
 Route::fallback([ApiTodoIdController::class,'error']);
+
+Route::group([
+    'prefix' => 'authors',
+], function() {
+    Route::get('', [ApiAuthorController::class, 'index']);
+    Route::post('', [ApiAuthorController::class, 'store']);
+    Route::get('{id}', [ApiAuthorController::class, 'show']);
+    Route::put('{id}', [ApiAuthorController::class, 'update']);
+    Route::delete('{id}', [ApiAuthorController::class, 'destroy']);
+});
+Route::fallback([ApiAuthorController::class,'error']);

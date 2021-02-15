@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\RoutesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +48,7 @@ Route::group([
 });
 Route::get('movies', [MovieController::class, 'index'])->name('movies');
 Route::get('movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
+Route::get('movies/pdf/{movie}', [MovieController::class, 'createPDF'])->name('movies.pdf');
 
 Route::group([
     'middleware' => 'auth',
@@ -59,6 +62,11 @@ Route::group([
 });
 Route::get('todos', [TodoController::class, 'index'])->name('todos');
 Route::get('todos/{todo}', [TodoController::class, 'show'])->name('todos.show');
+
+Route::get('routes', [RoutesController::class, 'index'])
+    ->name('routes')
+    ->middleware('auth')
+;
 
 // wenn eine route aufgerufen wird, die nicht definiert wurde
 Route::fallback(function() {

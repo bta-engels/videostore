@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Todo;
+use App\Models\Author;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ApiTodoRequest;
-use App\Http\Resources\TodoResource;
-use App\Models\User;
+use App\Http\Requests\ApiAuthorRequest;
+use App\Http\Resources\AuthorResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class ApiTodoIdController extends Controller
+class ApiAuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +18,8 @@ class ApiTodoIdController extends Controller
      */
     public function index()
     {
-        $data = Todo::all();
-        // @todo: add ressoure class here
-        $data = TodoResource::collection($data);
+        $data = Author::all();
+        $data = AuthorResource::collection($data);
         return response()->json($data);
     }
 
@@ -33,17 +31,17 @@ class ApiTodoIdController extends Controller
      */
     public function show($id)
     {
-        $todo = Todo::find($id);
+        $item = Author::find($id);
         // prüfe ob Datensatz gefunden wurde
-        if($todo) {
-            $todo = new TodoResource($todo);
+        if($item) {
+            $item = new AuthorResource($item);
         }
         // wenn nicht dann array mit fehlermeldung ausgeben
         else {
-            $todo = ['error' => 'not found'];
+            $item = ['error' => 'not found'];
         }
 
-        return response()->json($todo);
+        return response()->json($item);
     }
 
     /**
@@ -52,11 +50,11 @@ class ApiTodoIdController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(ApiTodoRequest $request)
+    public function store(ApiAuthorRequest $request)
     {
-        $todo = Todo::create($request->validated());
-        $todo = new TodoResource($todo);
-        return response()->json($todo);
+        $item = Author::create($request->validated());
+        $item = new AuthorResource($item);
+        return response()->json($item);
     }
 
     /**
@@ -66,23 +64,23 @@ class ApiTodoIdController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(ApiTodoRequest $request, $id)
+    public function update(ApiAuthorRequest $request, $id)
     {
         // validierung läuft schief
         if($request->validator && $request->validator->fails()) {
-            $todo = ['error' => $request->validator->errors()];
+            $item = ['error' => $request->validator->errors()];
         } // alles ok
         else {
-            $todo = Todo::find($id);
-            if($todo) {
-                $todo->update($request->validated());
-                $todo = new TodoResource($todo);
+            $item = Author::find($id);
+            if($item) {
+                $item->update($request->validated());
+                $item = new AuthorResource($item);
             } else {
-                $todo = ['error' => 'not found'];
+                $item = ['error' => 'not found'];
             }
         }
 
-        return response()->json($todo);
+        return response()->json($item);
     }
 
     /**
@@ -93,13 +91,13 @@ class ApiTodoIdController extends Controller
      */
     public function destroy($id)
     {
-        $todo = Todo::find($id);
-        if($todo) {
-            $todo->delete();
-            $todo = new TodoResource($todo);
+        $item = Author::find($id);
+        if($item) {
+            $item->delete();
+            $item = new AuthorResource($item);
         } else {
-            $todo = ['error' => 'not found'];
+            $item = ['error' => 'not found'];
         }
-        return response()->json($todo);
+        return response()->json($item);
     }
 }

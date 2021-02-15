@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Str;
+use PDF;
 use App\Http\Requests\MovieRequest;
 use App\Models\Author;
 use App\Models\Movie;
@@ -151,5 +154,19 @@ class MovieController extends Controller
         $validated[$inputName] = $hashName;
 
         return $validated;
+    }
+
+    /**
+     * Export PDF File
+     * @return mixed
+     */
+    public function createPDF(Movie $movie) {
+        // share data to view
+        $view = view('public.movies.pdf', compact('movie'));
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        $fileName = Str::kebab($movie->title) . '.pdf';
+        // download PDF file with download method
+        return $pdf->download($fileName);
     }
 }

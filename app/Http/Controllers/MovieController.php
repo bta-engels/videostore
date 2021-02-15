@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Str;
 use PDF;
+use Illuminate\Support\Str;
 use App\Http\Requests\MovieRequest;
 use App\Models\Author;
 use App\Models\Movie;
@@ -162,6 +161,9 @@ class MovieController extends Controller
      */
     public function createPDF(Movie $movie) {
         // load movie data in pdf-view
+        /**
+         * @var $pdf \Barryvdh\DomPDF\PDF
+         */
         $pdf = PDF::loadView('public.movies.pdf', compact('movie'));
         // wandle title in kebab schreiweise um: alles klein und bindestrich für leerzeichen
         // und benutze ihn als datei-name

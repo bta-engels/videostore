@@ -160,9 +160,9 @@ class MovieController extends Controller
      * @return mixed
      */
     public function createPDF(Movie $movie) {
-        // load movie data in pdf-view
         /**
          * @var $pdf \Barryvdh\DomPDF\PDF
+         * load movie data in pdf-view
          */
         $pdf = PDF::loadView('public.movies.pdf', compact('movie'));
         // wandle title in kebab schreiweise um: alles klein und bindestrich für leerzeichen

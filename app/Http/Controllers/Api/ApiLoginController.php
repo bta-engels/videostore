@@ -25,12 +25,20 @@ class ApiLoginController extends Controller
 
         $user = User::whereEmail($request->email)->first();
 
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        if ( ! $user || ! Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['Login Daten sind nicht korrekt.'],
             ]);
         }
 
-        return $user->createToken($user->email . '-' .uniqid(), ['write'])->plainTextToken;
+        $token = $user->createToken($user->email . '-' .uniqid(), ['write'])->plainTextToken;
+        // json rückgabe: name, email, token
+        $response = [
+            'name'  => $user->name,
+            'email'  => $user->email,
+            'token'  => $token,
+        ];
+
+        return response()->json($response);
     }
 }

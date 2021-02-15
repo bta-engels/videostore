@@ -161,12 +161,12 @@ class MovieController extends Controller
      * @return mixed
      */
     public function createPDF(Movie $movie) {
-        // share data to view
-        $view = view('public.movies.pdf', compact('movie'));
-        $pdf = App::make('dompdf.wrapper');
-        $pdf->loadHTML($view);
+        // load movie data in pdf-view
+        $pdf = PDF::loadView('public.movies.pdf', compact('movie'));
+        // wandle title in kebab schreiweise um: alles klein und bindestrich für leerzeichen
+        // und benutze ihn als datei-name
         $fileName = Str::kebab($movie->title) . '.pdf';
-        // download PDF file with download method
+        // download PDF file mit download method
         return $pdf->download($fileName);
     }
 }

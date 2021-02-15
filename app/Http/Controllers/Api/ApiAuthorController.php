@@ -8,8 +8,6 @@ use App\Http\Requests\ApiAuthorRequest;
 use App\Http\Resources\AuthorResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use function PHPUnit\Framework\throwException;
-
 
 class ApiAuthorController extends Controller
 {
@@ -33,14 +31,17 @@ class ApiAuthorController extends Controller
      */
     public function show($id)
     {
-        $author = Author::find($id);
-        if($author) {
-            $author = new AuthorResource($author);
+        $item = Author::find($id);
+        // prüfe ob Datensatz gefunden wurde
+        if($item) {
+            $item = new AuthorResource($item);
         }
+        // wenn nicht dann array mit fehlermeldung ausgeben
         else {
-            $author = ['error' => 'not found'];
+            $item = ['error' => 'not found'];
         }
-        return response()->json($author);
+
+        return response()->json($item);
     }
 
     /**
@@ -51,34 +52,35 @@ class ApiAuthorController extends Controller
      */
     public function store(ApiAuthorRequest $request)
     {
-        $author = Author::create($request->validated());
-        $author = new AuthorResource($author);
-        return response()->json($author);
+        $item = Author::create($request->validated());
+        $item = new AuthorResource($item);
+        return response()->json($item);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @param  int  $id
      * @return Response
      */
     public function update(ApiAuthorRequest $request, $id)
     {
-        if ($request->validator && $request->validator->fails()) {
-            $author = ['error' => $request->validator->errors()];
-        }
+        // validierung läuft schief
+        if($request->validator && $request->validator->fails()) {
+            $item = ['error' => $request->validator->errors()];
+        } // alles ok
         else {
-            $author = Author::find($id);
-            if ($author) {
-                $author->update($request->validated());
-                $author = new AuthorResource($author);
+            $item = Author::find($id);
+            if($item) {
+                $item->update($request->validated());
+                $item = new AuthorResource($item);
             } else {
-                $author = ['error' => 'not found'];
+                $item = ['error' => 'not found'];
             }
         }
-        return response()->json($author);
 
+        return response()->json($item);
     }
 
     /**
@@ -89,17 +91,13 @@ class ApiAuthorController extends Controller
      */
     public function destroy($id)
     {
-        $author = Author::find($id);
-        if ($author) {
-            $author->delete();
-            $author = new AuthorResource($author);
+        $item = Author::find($id);
+        if($item) {
+            $item->delete();
+            $item = new AuthorResource($item);
         } else {
-            $author = ['error' => 'not found'];
+            $item = ['error' => 'not found'];
         }
-        return response()->json($author);
-    }
-
-    public function error() {
-        return response()->json(['error' => 'route not found']);
+        return response()->json($item);
     }
 }

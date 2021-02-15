@@ -16,10 +16,11 @@ class AuthorResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            'id'        => $this->id,
             'firstname' => $this->firstname,
             'lastname'  => $this->lastname,
             'name'      => $this->name,
+            'movies'    => $this->movies->map->title,
         ];
     }
 }

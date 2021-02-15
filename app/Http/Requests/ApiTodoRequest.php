@@ -3,8 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class AuthorRequest
@@ -41,6 +39,4 @@ class ApiTodoRequest extends TodoRequest
         // anstatt Weiterleitung zum Formular zurück
         $this->validator = $validator;
     }
-
-
 }

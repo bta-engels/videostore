@@ -3,12 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
-
 
 /**
- * Class ApiAuthorRequest
+ * Class AuthorRequest
  * @package App\Http\Requests
  */
 class ApiAuthorRequest extends AuthorRequest
@@ -28,9 +25,12 @@ class ApiAuthorRequest extends AuthorRequest
         return true;
     }
 
+    /**
+     * @param Validator $validator
+     */
     protected function failedValidation(Validator $validator)
     {
+        // keine weiterleitung mehr zum formular zurück
         $this->validator = $validator;
     }
 }
-

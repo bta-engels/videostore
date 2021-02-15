@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\RoutesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,6 +63,7 @@ Route::get('movies', [MovieController::class, 'index'])->name('movies');
 
 // Route zur Einzelansicht
 Route::get('movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
+Route::get('movies/pdf/{movie}', [MovieController::class, 'createPDF'])->name('movies.pdf');
 
 
 // TODO ROUTEN
@@ -80,12 +83,10 @@ Route::get('todos', [TodoController::class, 'index'])->name('todos');
 // Route zur Einzelansicht
 Route::get('todos/{todo}', [TodoController::class, 'show'])->name('todos.show');
 
-
 Route::get('routes', [RoutesController::class, 'index'])
     ->name('routes')
     ->middleware('auth')
 ;
-
 
 // wenn eine route aufgerufen wird, die nicht definiert wurde
 Route::fallback(function() {

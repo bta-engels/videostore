@@ -18,21 +18,22 @@
                 <th>Autor</th>
                 <th>Titel</th>
                 <th>Preis</th>
-                <th colspan="2"><br></th>
+                <th colspan="3"><br></th>
             </tr>
             @foreach($data as $item)
                 <tr>
-                    <td>{{$item->id}}</td>
-                    <td>{{ $item->author->name}}</td>
-                    <td><a href="{{ route('movies.show', ['movie' => $item->id]) }}">
+                    <td>{{ $item->id }}</td>
+                    <td>{{ $item->author ? $item->author->name : null }}</td>
+                    <td><a class="link" href="{{ route('movies.show', ['movie' => $item->id]) }}">
                             {{ $item->title }}</a></td>
-                    <td>{{ $item->price}} €</td>
+                    <td>{{ $item->price }} €</td>
+                    <td><a role="button" class="btn-sm btn-primary"
+                           href="{{ route('movies.pdf', ['movie' => $item->id]) }}"><i class="far fa-file-pdf"></i>PDF</a></td>
                     <td><a role="button" class="btn-sm btn-primary"
                            href="{{ route('movies.edit', ['movie' => $item->id]) }}"><i class="fas fa-edit"></i>Edit</a></td>
                     <td><a role="button" class="btn-sm btn-danger"
                            onclick="return confirm('Datensatz wirklich löschen?')"
                            href="{{ route('movies.destroy', ['movie' => $item->id]) }}"><i class="fas fa-trash-alt"></i>Löschen</a></td>
-
                 </tr>
             @endforeach
         </table>

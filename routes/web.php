@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\TodoController;
+use App\Http\Controllers\RoutesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,7 @@ use App\Http\Controllers\MovieController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Auth::routes();
 
 // startseite
@@ -33,8 +36,6 @@ Route::group([
 Route::get('authors', [AuthorController::class, 'index'])->name('authors');
 Route::get('authors/{author}', [AuthorController::class, 'show'])->name('authors.show');
 
-
-
 Route::group([
     'middleware' => 'auth',
     'prefix'    => 'movies',
@@ -47,8 +48,25 @@ Route::group([
 });
 Route::get('movies', [MovieController::class, 'index'])->name('movies');
 Route::get('movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
+Route::get('movies/pdf/{movie}', [MovieController::class, 'createPDF'])->name('movies.pdf');
 
+Route::group([
+    'middleware' => 'auth',
+    'prefix'    => 'todos',
+], function() {
+    Route::get('create', [TodoController::class, 'create'])->name('todos.create');
+    Route::get('edit/{todo}', [TodoController::class, 'edit'])->name('todos.edit');
+    Route::post('store', [TodoController::class, 'store'])->name('todos.store');
+    Route::post('update/{todo}', [TodoController::class, 'update'])->name('todos.update');
+    Route::get('destroy/{todo}', [TodoController::class, 'destroy'])->name('todos.destroy');
+});
+Route::get('todos', [TodoController::class, 'index'])->name('todos');
+Route::get('todos/{todo}', [TodoController::class, 'show'])->name('todos.show');
 
+Route::get('routes', [RoutesController::class, 'index'])
+    ->name('routes')
+    ->middleware('auth')
+;
 
 // wenn eine route aufgerufen wird, die nicht definiert wurde
 Route::fallback(function() {

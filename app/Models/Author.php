@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Author whereId($value)
  * @method static Builder|Author whereLastname($value)
  * @mixin Eloquent
+ * @property-read mixed $name
  */
 class Author extends Model
 {
@@ -38,5 +39,10 @@ class Author extends Model
     public function getNameAttribute()
     {
         return $this->firstname . ' ' . $this->lastname;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

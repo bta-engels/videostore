@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
-@section('title','Filme')
-@section('header','Filme')
+@section('title','Todos')
+@section('header','Todos')
 
 @section('content')
     <div>
@@ -16,23 +16,20 @@
             <table class="table table-striped">
                 <tr>
                     <th>ID</th>
-                    <th>Autor</th>
-                    <th>Titel</th>
-                    <th>Preis</th>
-                    <th><br></th>
+                    <th>Done</th>
+                    <th>Text</th>
+                    <th>Erstellt</th>
+                    <th>Bearbeited</th>
                 </tr>
                 <!-- table data -->
                 @foreach($data as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
-                        <td>{{ $item->author ? $item->author->name : null }}</td>
-                        <td>
-                            <a href="{{ route('movies.show', ['movie' => $item->id]) }}">{{ $item->title }}</a>
-                        </td>
-                        <td>{{ $item->price }} €</td>
-                        <td><a role="button" class="btn-sm btn-primary"
-                               href="{{ route('movies.pdf', ['movie' => $item->id]) }}"><i class="far fa-file-pdf"></i>PDF</a></td>
-
+                        <td><i class="fas fa-{{ $item->done ? 'check' : 'times' }}"></i></td>
+                        <td><a href="{{ route('todos.show', ['todo' => $item->id]) }}">
+                                {{ $item->text }}</a></td>
+                        <td>{{ $item->created_at->format('d.m.Y H:i') }}</td>
+                        <td>{{ $item->updated_at->format('d.m.Y H:i') }}</td>
                     </tr>
                 @endforeach
             </table>

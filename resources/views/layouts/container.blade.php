@@ -39,26 +39,13 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="card">
-
-                            <div class="card-header">
-                                <h3>@yield('header')</h3>
-                            </div>
-
-                            <div class="card-body">
-                                @yield('content')
-                            </div>
-
-                        </div>
-                    </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="card-body">
+                    @yield('content')
                 </div>
             </div>
-        </main>
+        </div>
     </div>
 </body>
 </html>

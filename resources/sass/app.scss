@@ -6,11 +6,29 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
-i.fas {
+i.fas,i.far {
     display: inline;
     margin-right: 5px;
 }
 .invalid-feedback {
     display: block;
 }
-
+.fa-check {
+    color: #090;
+}
+.fa-times {
+    color: #c00;
+}
+table {
+    &.routes {
+        tr {
+            td {
+                font-size: 0.7rem;
+                &:first-child {
+                    font-weight: bold;
+                    color:red;
+                }
+            }
+        }
+    }
+}

@@ -33,6 +33,7 @@ use Illuminate\Support\Carbon;
 class Movie extends Model
 {
 	protected $table = 'movies';
+    protected $fillable = ['author_id','title','price','image'];
 
 	public function author()
     {

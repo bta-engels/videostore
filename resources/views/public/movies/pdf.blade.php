@@ -6,10 +6,10 @@
         <h3>{{ $movie->title }}</h3>
         <p>
             @if($movie->author)
-                Autor: {{$movie->author->name}}
+                Autor: {{ $movie->author->name }}
             @endif
             <br>
-            Preis: {{ $movie->price}}
+            Preis: {{ $movie->price }}
         </p>
         <br>
         @if($movie->image)

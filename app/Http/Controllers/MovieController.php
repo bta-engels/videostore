@@ -43,6 +43,9 @@ class MovieController extends Controller
     public function index()
     {
         $data = Movie::paginate(20);
+
+        //dd($data->first()->author->name);
+
         if(Auth::check()) {
             return view('admin.movies.index', compact('data'));
         }

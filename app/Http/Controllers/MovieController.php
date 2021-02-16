@@ -52,7 +52,6 @@ class MovieController extends Controller
         else {
             return view('public.movies.index', compact('data'));
         }
-
     }
 
     /**

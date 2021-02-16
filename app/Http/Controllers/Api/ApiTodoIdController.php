@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Todo;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\ApiTodoRequest;
 use App\Http\Resources\TodoResource;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class ApiTodoIdController extends Controller
+class ApiTodoIdController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -22,8 +20,8 @@ class ApiTodoIdController extends Controller
         $data = Todo::all();
         // Überschreibe $data-array mit gewünschter Form wie in der TodoResource festgelegt
         // @todo: add ressoure class here
-        $data = TodoResource::collection($data);
-        return response()->json($data);
+        $this->data = TodoResource::collection($data);
+        return $this->getResponse();
     }
 
     /**
@@ -42,10 +40,10 @@ class ApiTodoIdController extends Controller
         }
 //        Falls kein Datensatz existiert: selbst genierierte Fehlermeldung
         else {
-            $todo = ['error' => 'not found'];
+            $this->error = 'not found';
         }
 
-        return response()->json($todo);
+        return $this->getResponse();
     }
 
     /**
@@ -65,13 +63,13 @@ class ApiTodoIdController extends Controller
         $todo = Todo::create($request->validated());
         $todo = new TodoResource($todo);
         if($request->validator && $request->validator->fails()) {
-            $todo = ['errors' => $request->validator->errors()];
+            $this->error = $request->validator->errors();
         } // alles ok
         else {
             $todo = Todo::create($request->validated());
-            $todo = new TodoResource($todo);
+            $this->data = new TodoResource($todo);
         }
-        return response()->json($todo);
+        return $this->getResponse();
     }
 
     /**
@@ -83,22 +81,22 @@ class ApiTodoIdController extends Controller
      */
     public function update(ApiTodoRequest $request, $id)
     {
-        // Wenn Validierung schiefläuft, gib den Fehler zurück, der gefunden wurde
-        if ($request->validator && $request->validator->fails()) {
-            $todo = ['error' => $request->validator->errors()];
-        }// wenn alles OK, finde den gewünschten  Datensatz
+        // validierung läuft schief
+        if($request->validator && $request->validator->fails()) {
+            $this->error = $request->validator->errors();
+        } // alles ok
         else {
             $todo = Todo::find($id);
             // falls Datensatz existiert, aktualisiere ihn
             if ($todo) {
                 $todo->update($request->validated());
-                $todo = new TodoResource($todo);
+                $this->data = new TodoResource($todo);
             } else {
-                $todo = ['error' => 'not found'];
+                $this->error = 'not found';
             }
         }
 
-        return response()->json($todo);
+        return $this->getResponse();
     }
 
     /**
@@ -112,10 +110,10 @@ class ApiTodoIdController extends Controller
         $todo = Todo::find($id);
         if($todo) {
             $todo->delete();
-            $todo = new TodoResource($todo);
+            $this->data = new TodoResource($todo);
         } else {
-            $todo = ['error' => 'not found'];
+            $this->error = 'not found';
         }
-        return response()->json($todo);
+        return $this->getResponse();
     }
 }

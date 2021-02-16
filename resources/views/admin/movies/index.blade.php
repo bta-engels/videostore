@@ -23,7 +23,7 @@
             @foreach($data as $item)
                 <tr>
                     <td>{{ $item->id }}</td>
-                    <td>{{ $item->author ? $item->author->name : null}}</td>
+                    <td>{{ $item->author ? $item->author->name : null }}</td>
                     <td><a class="link" href="{{ route('movies.show', ['movie' => $item->id]) }}">
                             {{ $item->title }}</a></td>
                     <td>{{ $item->price }} €</td>

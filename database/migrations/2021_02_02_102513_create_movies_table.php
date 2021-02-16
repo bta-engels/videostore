@@ -16,8 +16,13 @@ class CreateMoviesTable extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('author_id');
-            // @todo: fremdschlüssel definieren
-
+            $table
+                ->foreign('author_id')
+                ->references('id')
+                ->on('authors')
+                ->onDelete('cascade')
+                ->onUpdate('cascade')
+            ;
             $table->string('title',255);
             $table->unsignedDecimal('price');
             $table->string('image',100)->nullable();

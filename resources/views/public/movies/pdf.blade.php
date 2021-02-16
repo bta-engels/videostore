@@ -5,9 +5,11 @@
     <div class="align-content-center">
         <h3>{{ $movie->title }}</h3>
         <p>
-            Autor: {{$movie->author->name}}
+            @if($movie->author)
+                Autor: {{ $movie->author->name }}
+            @endif
             <br>
-            Preis: {{ $movie->price}}
+            Preis: {{ $movie->price }}
         </p>
         <br>
         @if($movie->image)

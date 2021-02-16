@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Todo;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\ApiTodoRequest;
 use App\Http\Resources\TodoResource;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class ApiTodoIdController extends Controller
+class ApiTodoIdController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +19,8 @@ class ApiTodoIdController extends Controller
     {
         $data = Todo::all();
         // @todo: add ressoure class here
-        $data = TodoResource::collection($data);
-        return response()->json($data);
+        $this->data = TodoResource::collection($data);
+        return $this->getResponse();
     }
 
     /**
@@ -36,14 +34,14 @@ class ApiTodoIdController extends Controller
         $todo = Todo::find($id);
         // prüfe ob Datensatz gefunden wurde
         if($todo) {
-            $todo = new TodoResource($todo);
+            $this->data = new TodoResource($todo);
         }
         // wenn nicht dann array mit fehlermeldung ausgeben
         else {
-            $todo = ['error' => 'not found'];
+            $this->error = 'not found';
         }
 
-        return response()->json($todo);
+        return $this->getResponse();
     }
 
     /**
@@ -55,13 +53,13 @@ class ApiTodoIdController extends Controller
     public function store(ApiTodoRequest $request)
     {
         if($request->validator && $request->validator->fails()) {
-            $todo = ['errors' => $request->validator->errors()];
+            $this->error = $request->validator->errors();
         } // alles ok
         else {
             $todo = Todo::create($request->validated());
-            $todo = new TodoResource($todo);
+            $this->data = new TodoResource($todo);
         }
-        return response()->json($todo);
+        return $this->getResponse();
     }
 
     /**
@@ -75,19 +73,19 @@ class ApiTodoIdController extends Controller
     {
         // validierung läuft schief
         if($request->validator && $request->validator->fails()) {
-            $todo = ['error' => $request->validator->errors()];
+            $this->error = $request->validator->errors();
         } // alles ok
         else {
             $todo = Todo::find($id);
             if($todo) {
                 $todo->update($request->validated());
-                $todo = new TodoResource($todo);
+                $this->data = new TodoResource($todo);
             } else {
-                $todo = ['error' => 'not found'];
+                $this->error = 'not found';
             }
         }
 
-        return response()->json($todo);
+        return $this->getResponse();
     }
 
     /**
@@ -101,10 +99,10 @@ class ApiTodoIdController extends Controller
         $todo = Todo::find($id);
         if($todo) {
             $todo->delete();
-            $todo = new TodoResource($todo);
+            $this->data = new TodoResource($todo);
         } else {
-            $todo = ['error' => 'not found'];
+            $this->error = 'not found';
         }
-        return response()->json($todo);
+        return $this->getResponse();
     }
 }

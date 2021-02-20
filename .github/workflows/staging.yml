@@ -1,51 +1,57 @@
 name: CD
 
 on:
-  push:
-    branches: [ staging ]
+    push:
+        branches: [ staging ]
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        deploy_key: ${{ secrets.ACTION_DEPLOY_KEY }}
-    - name: Set up Node
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-    - run: npm install
-#    - run: npm run production
-#    - name: Commit built assets
-#      run: |
-#        git config --local user.email "engels@f50.de"
-#        git config --local user.name "berndengels"
-#        git checkout -B deploy
-#        git add -f public/
-#        git commit -m "Build front-end assets"
-#        git push -f origin deploy
-    - name: executing remote ssh commands
-      uses: appleboy/ssh-action@master
-      with:
-          # host name of server to deploy
-          host: videostore.goldenacker.de
-          # SSH: GOLDENACKER_USER in repositofy -> settings -> secrets
-          username: ${{ secrets.GOLDENACKER_USER }}
-          # SSH: GOLDENACKER_PASSWORD in repositofy -> settings -> secrets
-          password: ${{ secrets.GOLDENACKER_PASSWORD }}
-          port: 22
-          script: |   # shell commands on remote production server
-              whoami
-              cd videostore.goldenacker.de
-              if [ -d ".git" ]; then
-                  echo "git pull"
-                  git pull origin staging
-              else
-                  echo "git clone"
-                  git clone -b staging --single-branch https://github.com/berndengels/videostore.git .
-              fi
-              ./setup
-              ./clearme
-              ls -al
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+                with:
+                    deploy_key: ${{ secrets.ACTION_DEPLOY_KEY }}
+            -   name: Set up Node
+                uses: actions/setup-node@v1
+                with:
+                    node-version: '12.x'
+            -   run: npm install
+            #    - run: npm run production
+            #    - name: Commit built assets
+            #      run: |
+            #        git config --local user.email "engels@f50.de"
+            #        git config --local user.name "berndengels"
+            #        git checkout -B deploy
+            #        git add -f public/
+            #        git commit -m "Build front-end assets"
+            #        git push -f origin deploy
+            -   name: executing remote ssh commands
+                uses: appleboy/ssh-action@master
+                with:
+                    # host name of server to deploy
+                    host: videostore.goldenacker.de
+                    # SSH: GOLDENACKER_USER in repositofy -> settings -> secrets
+                    username: ${{ secrets.GOLDENACKER_USER }}
+                    # SSH: GOLDENACKER_PASSWORD in repositofy -> settings -> secrets
+                    password: ${{ secrets.GOLDENACKER_PASSWORD }}
+                    port: 22
+                    script: |   # shell commands on remote production server
+                        whoami
+                        cd videostore.goldenacker.de
+                        if [ -d ".git" ]; then
+                            echo "git pull"
+                            git pull origin staging
+                        else
+                            echo "git clone"
+                            git clone -b staging --single-branch https://github.com/berndengels/videostore.git .
+                            chmod -R 777 bootstrap/cache
+                            chmod -R 777 storage
+                            npm install
+                            composer install
+                            cp .env.example .env
+                            php artisan key:generate
+                        fi
+                        npm run dev
+                        ./perms
+                        ls -al
 

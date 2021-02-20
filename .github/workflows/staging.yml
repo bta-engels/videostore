@@ -55,6 +55,5 @@ jobs:
                             php artisan key:generate
                         fi
                         npm run dev
-                        ./perms
                         ls -al
 

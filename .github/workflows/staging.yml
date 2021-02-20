@@ -16,15 +16,15 @@ jobs:
       with:
         node-version: '12.x'
     - run: npm install
-    - run: npm run production
-    - name: Commit built assets
-      run: |
-        git config --local user.email "engels@f50.de"
-        git config --local user.name "berndengels"
-        git checkout -B deploy
-        git add -f public/
-        git commit -m "Build front-end assets"
-        git push -f origin deploy
+#    - run: npm run production
+#    - name: Commit built assets
+#      run: |
+#        git config --local user.email "engels@f50.de"
+#        git config --local user.name "berndengels"
+#        git checkout -B deploy
+#        git add -f public/
+#        git commit -m "Build front-end assets"
+#        git push -f origin deploy
     - name: executing remote ssh commands
       uses: appleboy/ssh-action@master
       with:

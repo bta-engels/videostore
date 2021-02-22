@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
-        View::share('globalName', 'Das ist allgemein in allen Views verfügbar');
+        View::share('globalName', 'global gesetzter Wert');
         View::share('currentTimestamp', Carbon::now()->timestamp);
     }
 }

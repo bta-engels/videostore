@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 
 class TodoSeeder extends Seeder
 {
+    private $count = 100;
     /**
      * Run the database seeds.
      *
@@ -15,6 +16,6 @@ class TodoSeeder extends Seeder
     public function run()
     {
         Todo::truncate();
-        Todo::factory()->count(10)->create();
+        Todo::factory()->count($this->count)->create();
     }
 }

@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "set permissions"
-sudo chmod -R 777 bootstrap/cache
-sudo chmod -R 777 storage
+chmod -R 777 bootstrap/cache
+chmod -R 777 storage
 
 if [ ! -d vendor ]; then
     echo "create vendors"
@@ -19,10 +19,10 @@ if [ ! -f .env ]; then
     echo "create .env file"
     cp .env.example .env
 fi
-if [ ! -f .htaccess ]; then
-    echo "create .htaccess file"
-    cp htaccess.tpl .htaccess
-fi
+#if [ ! -f .htaccess ]; then
+#    echo "create .htaccess file"
+#    cp htaccess.tpl .htaccess
+#fi
 # check for APP_KEY
 appKey=$(grep ^APP_KEY .env|awk -F "=" '{print $2}')
 if [ "$appKey" == "" ]; then

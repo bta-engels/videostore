@@ -28,7 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group([
-    'middleware'=> 'auth:sanctum',
+//    'middleware'=> 'auth:sanctum',
     'prefix' => 'todos',
 ], function() {
     Route::post('', [ApiTodoIdController::class, 'store']);

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-
+use App\Models\Todo;
 use Illuminate\Database\Seeder;
 use App\Models\Todo;
 // Für Variante über DB::table in der run-Funktion: DB einbinden
@@ -12,6 +12,7 @@ use App\Models\Todo;
 
 class TodoSeeder extends Seeder
 {
+    private $count = 100;
     /**
      * Run the database seeds.
      *
@@ -25,6 +26,7 @@ class TodoSeeder extends Seeder
         Todo::truncate();
         // Erstelle 10 Testdatensätze mittels der Todo-Factory
         // schreibe diese in die Tabelle todos
-        Todo::factory()->count(10)->create();
+//        Todo::factory()->count(10)->create();
+        Todo::factory()->count($this->count)->create();
     }
 }

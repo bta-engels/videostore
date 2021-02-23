@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Todo;
 use Illuminate\Database\Seeder;
-use App\Models\Todo;
 // Für Variante über DB::table in der run-Funktion: DB einbinden
 //use Illuminate\Support\Facades\DB;
 

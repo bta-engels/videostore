@@ -60,8 +60,7 @@ class ApiTodoIdController extends ApiController
 //        } else {
 //            die('nein, darf nicht schreiben');
 //        }
-        $todo = Todo::create($request->validated());
-        $todo = new TodoResource($todo);
+
         if($request->validator && $request->validator->fails()) {
             $this->error = $request->validator->errors();
         } // alles ok

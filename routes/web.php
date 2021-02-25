@@ -69,8 +69,9 @@ Route::get('routes', [RoutesController::class, 'index'])
 ;
 
 // wenn eine route aufgerufen wird, die nicht definiert wurde
+/*
 Route::fallback(function() {
     $message = 'Diese Route gibt\'s nicht bei mir!';
     return view('errors.message', compact('message'));
 });
-
+*/

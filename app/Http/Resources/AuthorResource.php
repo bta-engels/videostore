@@ -20,7 +20,7 @@ class AuthorResource extends JsonResource
             'firstname' => $this->firstname,
             'lastname'  => $this->lastname,
             'name'      => $this->name,
-//            'movies'    => $this->movies ? $this->movies->map->title : null,
+            'movies'    => $this->movies ? $this->movies->map->title : null,
         ];
     }
 }

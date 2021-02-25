@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,5 +33,8 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         View::share('globalName', 'global gesetzter Wert');
         View::share('currentTimestamp', Carbon::now()->timestamp);
+        if(!$this->app->environment('local')) {
+            URL::forceScheme('https');
+        }
     }
 }

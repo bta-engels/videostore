@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\Model;
 class Author extends Model
 {
     protected $table = 'authors';
-    protected $fillable = ['firstname', 'lastname'];
+    protected $fillable = ['id','firstname', 'lastname'];
     protected $appends = ['name'];
     public $timestamps = false;
 

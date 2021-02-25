@@ -16,9 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         Schema::disableForeignKeyConstraints();
         $this->call([
+            TodoSeeder::class,
             AuthorSeeder::class,
             MovieSeeder::class,
-            TodoSeeder::class,
+            UserSeeder::class,
         ]);
         Schema::enableForeignKeyConstraints();
     }

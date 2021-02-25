@@ -1,4 +1,4 @@
-INSERT INTO `authors` (`id`, `firstname`, `lastname`)
+INSERT INTO authors
 VALUES
 	(1, 'Mic', 'Lennie'),
 	(2, 'Mildrid', 'Oger'),

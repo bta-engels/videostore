@@ -17,7 +17,7 @@ class ApiTodoIdController extends ApiController
      */
     public function index()
     {
-        $data = Todo::all();
+        $data = Todo::all()->sortByDesc('id');
         // @todo: add ressoure class here
         $this->data = TodoResource::collection($data);
         return $this->getResponse();

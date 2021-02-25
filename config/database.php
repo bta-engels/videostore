@@ -1,6 +1,7 @@
 <?php
-
 use Illuminate\Support\Str;
+
+$PG_DATABASE_URL=parse_url('postgres://klavlyeqkomurw:be2b58fa54d3d98509295faca589297e75b4e3e448dcb3b9d919fddb28da6504@ec2-54-87-34-201.compute-1.amazonaws.com:5432/d19lobq5emfqq8');
 
 return [
 
@@ -15,7 +16,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'pgsql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,12 +66,12 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'url' => env('DATABASE_URL', $PG_DATABASE_URL),
+            'host' => env('DB_HOST', $PG_DATABASE_URL['host']),
+            'port' => env('DB_PORT', $PG_DATABASE_URL['port']),
+            'database' => env('DB_DATABASE', ltrim($PG_DATABASE_URL['path'],'/')),
+            'username' => env('DB_USERNAME', $PG_DATABASE_URL['user']),
+            'password' => env('DB_PASSWORD', $PG_DATABASE_URL['pass']),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,

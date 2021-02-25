@@ -17,7 +17,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $data = Todo::paginate(10);
+        $data = Todo::orderBy('id')->paginate(10);
         if(Auth::check()) {
             return view('admin.todos.index', compact('data'));
         }

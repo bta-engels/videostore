@@ -42,7 +42,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $data = Movie::paginate(20);
+        $data = Movie::orderBy('id')->paginate(20);
         if(Auth::check()) {
             return view('admin.movies.index', compact('data'));
         }

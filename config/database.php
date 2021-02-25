@@ -67,11 +67,18 @@ return [
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL', $PG_DATABASE_URL),
+            'host' => env('DB_HOST', isset($PG_DATABASE_URL['host']) ? $PG_DATABASE_URL['host'] : null),
+            'port' => env('DB_PORT', isset($PG_DATABASE_URL['port']) ? $PG_DATABASE_URL['port'] : null),
+            'database' => env('DB_DATABASE', isset($PG_DATABASE_URL['path']) ? ltrim($PG_DATABASE_URL['path'],'/') : null),
+            'username' => env('DB_USERNAME', isset($PG_DATABASE_URL['user']) ? $PG_DATABASE_URL['user'] : null),
+            'password' => env('DB_PASSWORD', isset($PG_DATABASE_URL['pass']) ? $PG_DATABASE_URL['pass']: null),
+/*
             'host' => env('DB_HOST', $PG_DATABASE_URL['host']),
             'port' => env('DB_PORT', $PG_DATABASE_URL['port']),
             'database' => env('DB_DATABASE', ltrim($PG_DATABASE_URL['path'],'/')),
             'username' => env('DB_USERNAME', $PG_DATABASE_URL['user']),
             'password' => env('DB_PASSWORD', $PG_DATABASE_URL['pass']),
+*/
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,

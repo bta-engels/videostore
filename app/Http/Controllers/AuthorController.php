@@ -16,7 +16,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $data = Author::paginate(10);
+        $data = Author::orderBy('id')->paginate(10);
         // bin ich eingeloggt?
         if(Auth::check()) {
             return view('admin.authors.index', compact('data'));

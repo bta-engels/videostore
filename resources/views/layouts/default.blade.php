@@ -14,9 +14,9 @@
         @show
     </title>
     <!-- Scripts -->
-    <script src="/js/app.js?t={{ $currentTimestamp }}" defer></script>
+    <script src="{{ secure_asset('js/app.js') }}?t={{ $currentTimestamp }}" defer></script>
     <!-- Styles -->
-    <link href="/css/app.css?t={{ $currentTimestamp }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/app.css') }}?t={{ $currentTimestamp }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">

@@ -15,9 +15,6 @@
     </title>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}?t={{ $currentTimestamp }}" defer></script>
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}?t={{ $currentTimestamp }}" rel="stylesheet">
 </head>

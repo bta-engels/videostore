@@ -1,10 +1,9 @@
 <?php
-
 namespace Database\Seeders;
 
 use App\Models\Movie;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Database\Seeders\Data\MovieData;
 
 class MovieSeeder extends Seeder
 {
@@ -16,7 +15,6 @@ class MovieSeeder extends Seeder
     public function run()
     {
         Movie::truncate();
-        $sql = file_get_contents(database_path('dumps/') . 'movies_data.sql');
-        DB::unprepared($sql);
+        Movie::insert(MovieData::getData());
     }
 }

@@ -1,12 +1,11 @@
 <?php
-
 namespace Database\Seeders;
 
-use App\Models\Author;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Database\Seeders\Data\AuthorData;
+use Database\Factories\AdminUserFactory;
 
-class AuthorSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +14,7 @@ class AuthorSeeder extends Seeder
      */
     public function run()
     {
-        Author::truncate();
-        Author::insert(AuthorData::getData());
+        User::truncate();
+        AdminUserFactory::times(1)->create();
     }
 }

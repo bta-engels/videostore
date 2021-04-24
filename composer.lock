@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1843caa404e323244b0d82d2003a502",
+    "content-hash": "2133a6c32fd1b48c91a154be77b07b78",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -57,6 +57,76 @@
                 "stack"
             ],
             "time": "2020-10-29T16:03:21+00:00"
+        },
+        {
+            "name": "azuyalabs/yasumi",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/azuyalabs/yasumi.git",
+                "reference": "e2f37e6de3b15642b83275a24bbfe101cd5c7791"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/azuyalabs/yasumi/zipball/e2f37e6de3b15642b83275a24bbfe101cd5c7791",
+                "reference": "e2f37e6de3b15642b83275a24bbfe101cd5c7791",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "fzaninotto/faker": "^1.9",
+                "mikey179/vfsstream": "^1.6",
+                "phpunit/phpunit": "^8.5"
+            },
+            "suggest": {
+                "ext-calendar": "For calculating the date of Easter"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Yasumi\\": "src/Yasumi/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sacha Telgenhof",
+                    "email": "me@sachatelgenhof.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "The easy PHP Library for calculating holidays.",
+            "homepage": "https://www.yasumi.dev",
+            "keywords": [
+                "Bank",
+                "calculation",
+                "calendar",
+                "celebration",
+                "date",
+                "holiday",
+                "holidays",
+                "national",
+                "time"
+            ],
+            "support": {
+                "docs": "https://www.yasumi.dev",
+                "issues": "https://github.com/azuyalabs/yasumi/issues",
+                "source": "https://github.com/azuyalabs/yasumi"
+            },
+            "funding": [
+                {
+                    "url": "https://www.buymeacoffee.com/sachatelgenhof",
+                    "type": "other"
+                }
+            ],
+            "time": "2020-06-22T12:46:20+00:00"
         },
         {
             "name": "barryvdh/laravel-dompdf",
@@ -5175,6 +5245,61 @@
             "time": "2020-07-13T06:12:54+00:00"
         },
         {
+            "name": "umulmrum/holiday",
+            "version": "0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/umulmrum/holiday.git",
+                "reference": "7254d2c11363d371968daadacba72d873d7c74f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/umulmrum/holiday/zipball/7254d2c11363d371968daadacba72d873d7c74f8",
+                "reference": "7254d2c11363d371968daadacba72d873d7c74f8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "chameleon-system/code-style-config": "dev-master@dev",
+                "ext-json": "*",
+                "phpunit/phpunit": "~9.4",
+                "symfony/translation": "~4.3|~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Umulmrum\\Holiday\\": [
+                        "src"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stefan Kruppa",
+                    "email": "stefan@umulmrum.de"
+                }
+            ],
+            "description": "A PHP library to compute holidays. It's something :-)",
+            "keywords": [
+                "calendar",
+                "date",
+                "holiday",
+                "holidays",
+                "time"
+            ],
+            "support": {
+                "issues": "https://github.com/umulmrum/holiday/issues",
+                "source": "https://github.com/umulmrum/holiday/tree/0.6.0"
+            },
+            "time": "2021-02-10T20:24:13+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v5.3.0",
             "source": {
@@ -8740,5 +8865,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }

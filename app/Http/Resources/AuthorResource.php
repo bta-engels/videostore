@@ -17,10 +17,8 @@ class AuthorResource extends JsonResource
     {
         return [
             'id'        => $this->id,
-            'firstname' => $this->firstname,
-            'lastname'  => $this->lastname,
             'name'      => $this->name,
-            'movies'    => $this->movies ? $this->movies->map->title : null,
+//            'movies'    => $this->movies ? $this->movies->map->title : null,
         ];
     }
 }

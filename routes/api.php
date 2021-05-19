@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiTodoIdController;
 use App\Http\Controllers\Api\ApiAuthorController;
+use App\Http\Controllers\Api\ApiMovieController;
 use App\Http\Controllers\Api\ApiLoginController;
 
 /*
@@ -23,8 +24,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 */
 Route::post('login', [ApiLoginController::class, 'login']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')
+    ->get('/user', function (Request $request) {
+        return $request->user();
 });
 
 Route::group([
@@ -48,6 +50,17 @@ Route::group([
 });
 Route::get('authors', [ApiAuthorController::class, 'index']);
 Route::get('authors/{id}', [ApiAuthorController::class, 'show']);
+
+Route::group([
+    'middleware' => 'auth:sanctum',
+    'prefix' => 'movies',
+], function() {
+    Route::post('', [ApiMovieController::class, 'store']);
+    Route::put('{id}', [ApiMovieController::class, 'update']);
+    Route::delete('{id}', [ApiMovieController::class, 'destroy']);
+});
+Route::get('movies', [ApiMovieController::class, 'index']);
+Route::get('movies/{id}', [ApiMovieController::class, 'show']);
 
 Route::fallback(function () {
     return response()->json(['error' => 'route not found']);

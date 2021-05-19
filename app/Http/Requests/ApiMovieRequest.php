@@ -8,7 +8,7 @@ use Illuminate\Contracts\Validation\Validator;
  * Class AuthorRequest
  * @package App\Http\Requests
  */
-class ApiTodoRequest extends TodoRequest
+class ApiMovieRequest extends MovieRequest
 {
     /**
      * @var Validator

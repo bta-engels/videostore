@@ -15,7 +15,7 @@ return [
 
     'stateful' => explode(',', env(
         'SANCTUM_STATEFUL_DOMAINS',
-        'localhost,localhost:3000,localhost:8080,127.0.0.1,127.0.0.1:8000,::1,videostore.loc'
+        'localhost,localhost:3000,localhost:8080,127.0.0.1,127.0.0.1:8000,::1,videostore.loc,be-videostore.herokuapp.com'
     )),
 
     /*
@@ -46,5 +46,4 @@ return [
         'verify_csrf_token' => App\Http\Middleware\VerifyCsrfToken::class,
         'encrypt_cookies' => App\Http\Middleware\EncryptCookies::class,
     ],
-
 ];

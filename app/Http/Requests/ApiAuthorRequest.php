@@ -22,7 +22,7 @@ class ApiAuthorRequest extends AuthorRequest
      */
     public function authorize()
     {
-        return true;
+        return request()->user()->tokenCan('write');
     }
 
     /**

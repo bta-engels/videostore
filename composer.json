@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.0",
         "azuyalabs/yasumi": "^2.3",
+        "barryvdh/laravel-debugbar": "^3.5",
         "barryvdh/laravel-dompdf": "^0.9.0",
         "berndengels/laravel8-email-exceptions": "^1.0",
         "fakerphp/faker": "^1.13",

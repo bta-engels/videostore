@@ -16,7 +16,12 @@ class ApiMovieController extends ApiController
      */
     public function index()
     {
-        $data = Movie::all()->sortByDesc('id');
+        // gib mir 20 movies aus, absteigend sortiert nach id
+        $data = Movie::with('author')
+            ->get()
+            ->sortByDesc('id')
+            ->take(20)
+        ;
         // @todo: add ressoure class here
         $this->data = MovieResource::collection($data);
         return $this->getResponse();

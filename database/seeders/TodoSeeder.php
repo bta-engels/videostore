@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 
 class TodoSeeder extends Seeder
 {
-    private $count = 100;
+    private $count = 20;
     /**
      * Run the database seeds.
      *

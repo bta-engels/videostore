@@ -22,7 +22,6 @@ class ApiMovieController extends ApiController
             ->sortByDesc('id')
             ->take(20)
         ;
-        // @todo: add ressoure class here
         $this->data = MovieResource::collection($data);
         return $this->getResponse();
     }

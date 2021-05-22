@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TodoRequest;
+use App\Events\OnUpdated;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -17,7 +18,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $data = Todo::orderBy('id')->paginate(10);
+        $data = Todo::with('translations')->orderBy('id')->paginate(10);
         if(Auth::check()) {
             return view('admin.todos.index', compact('data'));
         }
@@ -56,7 +57,8 @@ class TodoController extends Controller
      */
     public function store(TodoRequest $request)
     {
-        Todo::create($request->validated());
+        $todo = Todo::create($request->validated());
+        event(new OnUpdated($todo, $request->validated()));
         return redirect()->route('todos');
     }
 
@@ -81,6 +83,7 @@ class TodoController extends Controller
     public function update(TodoRequest $request, Todo $todo)
     {
         $todo->update($request->validated());
+        event(new OnUpdated($todo->refresh(), $request->validated()));
         return redirect()->route('todos');
     }
 

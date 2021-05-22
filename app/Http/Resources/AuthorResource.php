@@ -1,7 +1,7 @@
 <?php
-
 namespace App\Http\Resources;
 
+use App\Models\Author;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -15,10 +15,12 @@ class AuthorResource extends JsonResource
      */
     public function toArray($request)
     {
+        /**
+         * @var Author $this
+         */
         return [
-            'id'        => $this->id,
-            'name'      => $this->name,
-//            'movies'    => $this->movies ? $this->movies->map->title : null,
+            'id'    => $this->id,
+            'name'  => $this->name,
         ];
     }
 }

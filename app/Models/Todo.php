@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\I18n\Translatable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -28,8 +29,21 @@ use Illuminate\Support\Carbon;
  */
 class Todo extends Model
 {
-    use HasFactory;
+    use HasFactory, Translatable;
 
-	protected $table = 'todos';
+    public $translatables = ['text'];
+    protected $with = ['translations'];
+    protected $table = 'todos';
 	protected $fillable = ['done','text'];
+
+    public function getTextAttribute($value)
+    {
+        return $this->trans->text ?? $value;
+    }
+
+    public function getDoneIconAttribute()
+    {
+        $css = $this->done ? 'check' : 'times';
+        return "<i class=\"fas fa-$css\"></i>";
+    }
 }

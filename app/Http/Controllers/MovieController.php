@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use PDF;
+use App\Events\OnUpdated;
 use Illuminate\Support\Str;
 use App\Http\Requests\MovieRequest;
 use App\Models\Author;
@@ -42,7 +43,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $data = Movie::orderBy('id')->paginate(20);
+        $data = Movie::with(['author','translations'])->orderBy('id')->paginate(20);
         if(Auth::check()) {
             return view('admin.movies.index', compact('data'));
         }
@@ -86,7 +87,9 @@ class MovieController extends Controller
         if ($request->hasFile('image')) {
             $validated = $this->handleUpload('image', $request);
         }
-        Movie::create($validated);
+        $movie = Movie::create($validated);
+        event(new OnUpdated($movie, $request->validated()));
+
         return redirect()->route('movies');
     }
 
@@ -119,6 +122,8 @@ class MovieController extends Controller
             $validated = $this->handleUpload('image', $request);
         }
         $movie->update($validated);
+        event(new OnUpdated($movie->refresh(), $request->validated()));
+
         return redirect()->route('movies');
     }
 

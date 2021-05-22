@@ -3,13 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\UploadedFile;
+use Auth;
 
-/**
- * Class MovieRequest
- * @package App\Http\Requests
- */
 class MovieRequest extends FormRequest
 {
     /**
@@ -22,16 +17,24 @@ class MovieRequest extends FormRequest
         return Auth::check();
     }
 
-    /**
-     * Prepare the data for validation.
-     *
-     * @return void
-     */
     protected function prepareForValidation()
     {
-        $this->merge([
-            'price' => str_replace(',','.', $this->price),
-        ]);
+        $this->merge(['price' => str_replace(',', '.', $this->price)]);
+    }
+
+    public function validated()
+    {
+        $validated = parent::validated();
+        if(request()->hasFile('image')) {
+            $file = $this->file('image');
+            if($file->isValid()) {
+                $hashName = $file->hashName();
+                // Upload und db Eintrag
+                $file->storeAs('images', $hashName, 'public');
+                $validated['image'] = $hashName;
+            }
+        }
+        return $validated;
     }
 
     /**
@@ -42,26 +45,21 @@ class MovieRequest extends FormRequest
     public function rules()
     {
         return [
-            // Alles Plichtfelder und mindestens 3 Zeichen lang
-            'author_id' => 'required',
-            'title'     => 'required|min:3',
-            'price'     => 'required',
-            'image'     => 'nullable|image',
+            'author_id'     =>  'required',
+            'title'         =>  'required|min:3',
+            'price'         =>  'required',
+            'image'         =>  'nullable|image'
         ];
     }
 
-    /**
-     * Gib mir meine eigene Fehlermeldungen aus
-     * @return array
-     */
     public function messages()
     {
         return [
-            'author_id.required'    => 'Bitte einen Autor angeben',
-            'title.required'        => 'Bitte einen Titel angeben',
-            'title.min'             => 'Der Titel muß mindesten :min Zeichen enthalten',
-            'price.required'        => 'Bitte einen Preis angeben',
-            'image.image'           => 'Es dürfen nur Bilder hochgeladen werden',
+            'author_id.required'  =>  'Bitte einen Autoren wählen!',
+            'title.required'      =>  'Bitte einen Titel eingeben!',
+            'title.min'           =>  'Der Titel benötigt wenigstens :min Zeichen!',
+            'price.required'      =>  'Bitte einen Preis eingeben!',
+            'image.image'         =>  'Datei muss eine Bild-Datei sein!'
         ];
     }
 }

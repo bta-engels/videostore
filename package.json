@@ -1,12 +1,12 @@
 {
     "private": true,
     "scripts": {
-        "dev": "npm run development",
+        "dev": "npm run --silent development",
         "development": "mix",
         "watch": "mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
-        "prod": "npm run production",
+        "prod": "npm run --silent production",
         "production": "mix --production",
         "build": "npm run production"
     },
@@ -19,6 +19,7 @@
         "babel-loader": "^8.2.2",
         "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
+        "include-media": "^1.4.10",
         "jquery": "^3.2",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",

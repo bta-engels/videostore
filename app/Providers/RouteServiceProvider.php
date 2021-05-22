@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Movie;
+use App\Models\Todo;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -36,6 +38,9 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::pattern('id', '[0-9]+');
+        Route::pattern('author', '[0-9]+');
+        Route::pattern('movie', '[0-9]+');
+        Route::pattern('todo', '[0-9]+');
         $this->configureRateLimiting();
 
         $this->routes(function () {

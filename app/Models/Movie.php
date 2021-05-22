@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\I18n\Translatable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -32,10 +33,18 @@ use Illuminate\Support\Carbon;
  */
 class Movie extends Model
 {
+    use Translatable;
+
+    public $translatables = ['title'];
 	protected $table = 'movies';
     protected $fillable = ['id','author_id','title','price','image','created_at','updated_at'];
 
-	public function author()
+    public function getTitleAttribute($value)
+    {
+        return $this->trans->title ?? $value;
+    }
+
+    public function author()
     {
         return $this->belongsTo(Author::class);
     }

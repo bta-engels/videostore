@@ -1,0 +1,16 @@
+{
+  "ID": "ID",
+  "Sorry, no data available": "Leider keine Daten vorhanden",
+  "Movie": "Film",
+  "Movies": "Filme",
+  "Author": "Autor",
+  "Authors": "Autoren",
+  "Todo": "Todo",
+  "Todos": "Todos",
+  "Firstname": "Vorname",
+  "Lastname": "Nachname",
+  "Title": "Titel",
+  "Price": "Preis",
+  "is required": "ist erforderlich",
+  "length must between :min and :max": "muß mindestens :min und darf max. :max lang sein!"
+}

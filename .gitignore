@@ -25,6 +25,4 @@ perms
 /.phpstorm.meta.php
 /.styleci.yml
 /_ide_helper.php
-/package-lock.json
 /public/mix-manifest.json
-/composer.lock

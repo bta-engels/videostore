@@ -18,16 +18,19 @@
         "axios": "^0.21",
         "babel-loader": "^8.2.2",
         "bootstrap": "^4.0.0",
+        "chokidar": "^3.5.1",
         "cross-env": "^7.0",
+        "fsevents": "^2.3.2",
         "include-media": "^1.4.10",
         "jquery": "^3.2",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
-        "popper.js": "^1.12",
+        "popper.js": "^1.16.1",
         "postcss": "^8.1.14",
         "resolve-url-loader": "^3.1.0",
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0",
-        "schema-utils": "^3.0.0"
+        "schema-utils": "^3.0.0",
+        "source-map-resolve": "^0.6.0"
     }
 }
